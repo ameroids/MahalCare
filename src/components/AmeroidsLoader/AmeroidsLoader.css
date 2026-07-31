@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Teko:wght@600;700&display=swap');
+
+.ameroids-loader {
+  position: fixed;
+  inset: 0;
+  background-color: #022c22; /* Deep dark teal matching the theme */
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  opacity: 0;
+  animation: loaderFadeIn 0.5s ease-out forwards;
+}
+
+.ameroids-loader--fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease-out;
+  pointer-events: none;
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Background Grid */
+.ameroids-loader__grid {
+  position: absolute;
+  inset: 0;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(20, 184, 166, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 184, 166, 0.05) 1px, transparent 1px);
+  z-index: 1;
+}
+
+/* Corners */
+.ameroids-loader__top-left,
+.ameroids-loader__top-right,
+.ameroids-loader__bottom-left,
+.ameroids-loader__bottom-right {
+  position: absolute;
+  z-index: 2;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: #5eead4; /* Theme teal accent */
+}
+
+.ameroids-loader__top-left { top: 30px; left: 40px; }
+.ameroids-loader__top-right { top: 30px; right: 40px; }
+.ameroids-loader__bottom-left { bottom: 30px; left: 40px; }
+.ameroids-loader__bottom-right { bottom: 30px; right: 40px; }
+
+.dot { color: #5eead4; margin: 0 4px; }
+
+/* Center Branding */
+.ameroids-loader__brand {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: -10vh; /* Push slightly up to leave room for orbital animation */
+}
+
+.ameroids-loader__tech {
+  color: #5eead4;
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  margin-bottom: 0px;
+}
+
+.ameroids-loader__title {
+  font-family: 'Teko', sans-serif;
+  font-size: 6.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: -10px 0;
+  line-height: 1;
+}
+
+.orange-text {
+  color: #F96A38;
+}
+
+.ameroids-loader__subtitle {
+  color: #99f6e4; /* Light teal */
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  margin-top: 5px;
+}
+
+/* Orbital Animation */
+.ameroids-loader__orbit-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 200px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ring-1 { width: 350px; height: 100px; }
+.ring-2 { width: 250px; height: 70px; }
+.ring-3 { width: 150px; height: 40px; }
+
+.orbit-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #5eead4;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #5eead4;
+}
+
+.orbit-planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 6px;
+  background-color: #F96A38;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #F96A38;
+  /* Animate along an elliptical path */
+  animation: orbit 4s linear infinite;
+}
+
+@keyframes orbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(175px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(175px) rotate(-360deg); }
+}
+
+/* Progress Section */
+.ameroids-loader__progress-section {
+  position: absolute;
+  bottom: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ameroids-loader__progress-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.ameroids-loader__progress-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ameroids-loader__progress-bar-bg {
+  flex: 1;
+  height: 2px;
+  background-color: rgba(20, 184, 166, 0.2); /* Theme teal background */
+  position: relative;
+}
+
+.ameroids-loader__progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #14b8a6; /* Theme primary teal */
+  box-shadow: 0 0 8px #14b8a6;
+  transition: width 0.1s linear; /* Fast response to erratic buffering */
+}
+
+/* Subtle gradient tip on progress bar to match the orange hint */
+.ameroids-loader__progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -1px;
+  height: 4px;
+  width: 15px;
+  background: #F96A38;
+  box-shadow: 0 0 8px #F96A38;
+}
+
+.ameroids-loader__progress-percent {
+  width: 40px;
+  text-align: right;
+  font-size: 1.1rem;
+}

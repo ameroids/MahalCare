@@ -12,9 +12,11 @@ import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton.jsx";
 import HealthAdvice from "./components/HealthAdvice/HealthAdvice.jsx";
 import FAQModal from "./components/FAQ/FAQ.jsx";
 import BookingModal from "./components/BookingModal/BookingModal.jsx";
+import AmeroidsLoader from "./components/AmeroidsLoader/AmeroidsLoader.jsx";
 
 export default function App() {
   const [auth, setAuth] = useState(null); // { role: 'user'|'admin', its: '...' }
+  const [pendingAuth, setPendingAuth] = useState(null);
   const [showFAQ, setShowFAQ] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [bookingDoctor, setBookingDoctor] = useState(null);
@@ -27,8 +29,13 @@ export default function App() {
   return (
     <BookingProvider>
       <RosterProvider>
-        {!auth ? (
-          <Login onLogin={setAuth} />
+        {!auth && !pendingAuth ? (
+          <Login onLogin={setPendingAuth} />
+        ) : pendingAuth ? (
+          <AmeroidsLoader onComplete={() => {
+            setAuth(pendingAuth);
+            setPendingAuth(null);
+          }} />
         ) : auth.role === 'admin' ? (
           <div className="admin-page" style={{ padding: '2rem', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
             <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
