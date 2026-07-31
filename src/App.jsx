@@ -12,7 +12,6 @@ import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton.jsx";
 import HealthAdvice from "./components/HealthAdvice/HealthAdvice.jsx";
 import FAQModal from "./components/FAQ/FAQ.jsx";
 import BookingModal from "./components/BookingModal/BookingModal.jsx";
-import AIChatPlaceholder from "./components/AIChatPlaceholder/AIChatPlaceholder.jsx";
 
 export default function App() {
   const [auth, setAuth] = useState(null); // { role: 'user'|'admin', its: '...' }
@@ -60,7 +59,6 @@ export default function App() {
             {showFAQ && <FAQModal onClose={() => setShowFAQ(false)} />}
             {showBooking && <BookingModal initialDoctor={bookingDoctor} onClose={() => setShowBooking(false)} />}
             <WhatsAppButton />
-            <AIChatPlaceholder />
           </>
         )}
       </RosterProvider>
