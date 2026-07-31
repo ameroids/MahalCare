@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RosterProvider } from "./context/RosterContext.jsx";
 import { BookingProvider } from "./context/BookingContext.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
@@ -15,7 +15,17 @@ import BookingModal from "./components/BookingModal/BookingModal.jsx";
 import AmeroidsLoader from "./components/AmeroidsLoader/AmeroidsLoader.jsx";
 
 export default function App() {
-  const [auth, setAuth] = useState(null); // { role: 'user'|'admin', its: '...' }
+  const [auth, setAuth] = useState(() => {
+    const saved = localStorage.getItem('mahalcare_auth');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }); // { role: 'user'|'admin', its: '...' }
   const [pendingAuth, setPendingAuth] = useState(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showFAQ, setShowFAQ] = useState(false);
@@ -26,6 +36,14 @@ export default function App() {
     setBookingDoctor(doctor || null);
     setShowBooking(true);
   };
+
+  useEffect(() => {
+    if (auth) {
+      localStorage.setItem('mahalcare_auth', JSON.stringify(auth));
+    } else {
+      localStorage.removeItem('mahalcare_auth');
+    }
+  }, [auth]);
 
   return (
     <BookingProvider>
