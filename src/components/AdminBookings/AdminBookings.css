@@ -1,0 +1,99 @@
+.admin-bookings {
+  padding: var(--space-6);
+  border-radius: var(--r-xl);
+}
+
+.admin-bookings__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.admin-bookings__header h2 {
+  font-size: var(--text-xl);
+  color: var(--c-teal-900);
+  margin-bottom: var(--space-1);
+}
+
+.admin-bookings__header p {
+  color: var(--c-text-muted);
+  font-size: var(--text-sm);
+}
+
+.admin-bookings__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.admin-bookings__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  gap: var(--space-3);
+  color: var(--c-text-muted);
+  background: var(--c-surface);
+  border: 1px dashed var(--c-border);
+  border-radius: var(--r-lg);
+}
+.text-teal-faint {
+  color: var(--c-teal-200);
+}
+
+.admin-bookings__table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+}
+
+.admin-bookings__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  min-width: 600px;
+}
+
+.admin-bookings__table th {
+  background: var(--c-surface-alt);
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+  font-weight: 700;
+  border-bottom: 1px solid var(--c-border-soft);
+}
+
+.admin-bookings__table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--c-border-soft);
+  vertical-align: top;
+}
+
+.admin-bookings__table tr:last-child td {
+  border-bottom: none;
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+.text-muted {
+  color: var(--c-text-muted);
+}
+
+.admin-bookings__token {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  color: var(--c-teal-900);
+  background: var(--c-teal-50);
+  border: 1px solid var(--c-teal-200);
+  padding: 2px var(--space-2);
+  border-radius: var(--r-sm);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}

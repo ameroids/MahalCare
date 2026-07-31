@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="60" fill="url(#bgGrad2)"/>
+  <!-- Head & Short Hair -->
+  <circle cx="60" cy="48" r="22" fill="#ffdfc4"/>
+  <path d="M 38 46 C 38 30, 82 30, 82 46 Z" fill="#1e1e1e"/>
+  <!-- Doctor coat -->
+  <path d="M 28 108 C 28 80, 42 74, 60 74 C 78 74, 92 80, 92 108 Z" fill="#ffffff"/>
+  <!-- Tie & Shirt -->
+  <path d="M 54 74 L 60 84 L 66 74 Z" fill="#2563eb"/>
+  <polygon points="58,74 62,74 63,90 60,94 57,90" fill="#1d4ed8"/>
+  <!-- Stethoscope -->
+  <path d="M 44 76 Q 40 92 60 96 Q 80 92 76 76" fill="none" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="60" cy="97" r="4" fill="#60a5fa"/>
+</svg>

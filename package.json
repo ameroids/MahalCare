@@ -1,0 +1,28 @@
+{
+  "name": "mahal-us-shifa-appointment-system",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mahal-us-Shifa Appointment System — a modular, healthcare-styled React app that displays a monthly doctor roster populated automatically from an uploaded Excel or JSON file.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "framer-motion": "^12.42.2",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^1.26.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^18.3.1",
+    "react-to-print": "^3.3.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  }
+}

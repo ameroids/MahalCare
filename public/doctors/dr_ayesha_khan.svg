@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d4f4f"/>
+      <stop offset="100%" stop-color="#149191"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="60" fill="url(#bgGrad1)"/>
+  <!-- Head & Hair -->
+  <circle cx="60" cy="48" r="22" fill="#fcd5ce"/>
+  <path d="M 38 48 C 38 28, 82 28, 82 48 C 82 34, 38 34, 38 48 Z" fill="#2d1e18"/>
+  <!-- Doctor coat -->
+  <path d="M 28 108 C 28 80, 42 74, 60 74 C 78 74, 92 80, 92 108 Z" fill="#ffffff"/>
+  <!-- Inner shirt -->
+  <path d="M 52 74 L 60 88 L 68 74 Z" fill="#0d4f4f"/>
+  <!-- Stethoscope -->
+  <path d="M 44 76 Q 40 92 60 96 Q 80 92 76 76" fill="none" stroke="#2b2d42" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="60" cy="97" r="4" fill="#06b6d4"/>
+</svg>

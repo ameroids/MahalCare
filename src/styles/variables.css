@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Design Tokens — MahalCare Enterprise Healthcare Management System
+   Powered by Mahal Us Shifa | Designed & Developed by Ameroids Tech Studio
+   ========================================================================== */
+:root {
+  /* --- 8px Spacing System --- */
+  --space-0: 0px;
+  --space-0-5: 4px;
+  --space-1: 8px;
+  --space-1-5: 12px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+
+  /* --- Primary: Deep Teal/Green --- */
+  --c-primary-900: #0a3d3d;
+  --c-primary-800: #0d4f4f;
+  --c-primary-700: #115e5e;
+  --c-primary-600: #0f766e;
+  --c-primary-500: #14897e;
+  --c-primary-400: #2dd4bf;
+  --c-primary-300: #5eead4;
+  --c-primary-200: #99f6e4;
+  --c-primary-100: #ccfbf1;
+  --c-primary-50: #f0fdfa;
+
+  /* --- Secondary: Emerald Green --- */
+  --c-secondary-900: #064e3b;
+  --c-secondary-800: #065f46;
+  --c-secondary-700: #047857;
+  --c-secondary-600: #059669;
+  --c-secondary-500: #10b981;
+  --c-secondary-400: #34d399;
+  --c-secondary-300: #6ee7b7;
+  --c-secondary-200: #a7f3d0;
+  --c-secondary-100: #d1fae5;
+  --c-secondary-50: #ecfdf5;
+
+  /* --- Accent: Gold/Amber (for CTAs, highlights) --- */
+  --c-accent-900: #78350f;
+  --c-accent-800: #92400e;
+  --c-accent-700: #b45309;
+  --c-accent-600: #d97706;
+  --c-accent-500: #f59e0b;
+  --c-accent-400: #fbbf24;
+  --c-accent-300: #fcd34d;
+  --c-accent-200: #fde68a;
+  --c-accent-100: #fef3c7;
+  --c-accent-50: #fffbeb;
+
+  /* --- Legacy Teal (mapped to primary for compatibility) --- */
+  --c-teal-900: var(--c-primary-900);
+  --c-teal-800: var(--c-primary-800);
+  --c-teal-700: var(--c-primary-700);
+  --c-teal-600: var(--c-primary-600);
+  --c-teal-500: var(--c-primary-500);
+  --c-teal-200: var(--c-primary-200);
+  --c-teal-100: var(--c-primary-100);
+  --c-teal-50: var(--c-primary-50);
+
+  /* --- Accent Colors --- */
+  --c-blue-900: #1e3a8a;
+  --c-blue-800: #1e40af;
+  --c-blue-600: #2563eb;
+  --c-blue-500: #3b82f6;
+  --c-blue-100: #dbeafe;
+  --c-blue-50: #eff6ff;
+
+  --c-green-700: #047857;
+  --c-green-600: #059669;
+  --c-green-500: #10b981;
+  --c-green-100: #d1fae5;
+  --c-green-50: #ecfdf5;
+
+  --c-red-700: #b91c1c;
+  --c-red-600: #dc2626;
+  --c-red-500: #ef4444;
+  --c-red-100: #fee2e2;
+  --c-red-50: #fef2f2;
+
+  --c-amber-700: #b45309;
+  --c-amber-600: #d97706;
+  --c-amber-500: #f59e0b;
+  --c-amber-100: #fef3c7;
+  --c-amber-50: #fffbeb;
+
+  --c-purple-600: #7c3aed;
+  --c-purple-100: #ede9fe;
+
+  /* --- Surfaces (Light) --- */
+  --c-bg: #f0fdfa;
+  --c-surface: #ffffff;
+  --c-surface-alt: #e6f7f2;
+  --c-surface-hover: #ccfbf1;
+
+  /* --- Text (Light) --- */
+  --c-text: #0a3d3d;
+  --c-text-muted: #3d6b6b;
+  --c-text-faint: #7da3a3;
+  --c-on-brand: #ffffff;
+
+  /* --- Borders / glass (Light) --- */
+  --c-border: #b2dfdb;
+  --c-border-soft: #e0f2f1;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg-strong: rgba(255, 255, 255, 0.95);
+  --glass-blur: 24px;
+  --glass-border: rgba(255, 255, 255, 0.5);
+
+  /* --- Shadows (Enterprise Elevation) --- */
+  --shadow-sm: 0 1px 2px 0 rgba(10, 61, 61, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(10, 61, 61, 0.08), 0 2px 4px -2px rgba(10, 61, 61, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(10, 61, 61, 0.1), 0 4px 6px -4px rgba(10, 61, 61, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(10, 61, 61, 0.1), 0 8px 10px -6px rgba(10, 61, 61, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(10, 61, 61, 0.2);
+  --shadow-glow: 0 0 0 4px rgba(15, 118, 110, 0.2);
+  --shadow-glow-green: 0 0 0 4px rgba(16, 185, 129, 0.15);
+
+  /* --- Radius (Sharp & Professional) --- */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-2xl: 20px;
+  --r-pill: 9999px;
+
+  /* --- Typography Hierarchy --- */
+  --font-display: "Sora", "Inter", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* --- Motion (Refined & Intentional) --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur-med: 300ms;
+  --dur-slow: 500ms;
+  --dur-slower: 800ms;
+
+  /* --- Layout --- */
+  --container: 1280px;
+  --container-wide: 1440px;
+  --nav-h: 64px;
+  --sidebar-w: 260px;
+}
+
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
+[data-theme="dark"] {
+  --c-bg: #071a1a;
+  --c-surface: #0d2b2b;
+  --c-surface-alt: #133838;
+  --c-surface-hover: #1a4a4a;
+
+  --c-primary-900: #99f6e4;
+  --c-primary-800: #5eead4;
+  --c-primary-700: #2dd4bf;
+  --c-primary-600: #14b8a6;
+  --c-primary-500: #0f766e;
+  --c-primary-100: #0d3333;
+  --c-primary-50: #0a2626;
+
+  --c-secondary-700: #34d399;
+  --c-secondary-600: #10b981;
+  --c-secondary-100: #064e3b;
+  --c-secondary-50: #022c22;
+
+  --c-text: #e0f2f1;
+  --c-text-muted: #80cbc4;
+  --c-text-faint: #4db6ac;
+  --c-on-brand: #ffffff;
+
+  --c-border: #1a4a4a;
+  --c-border-soft: #1a4a4a;
+  --glass-bg: rgba(13, 43, 43, 0.85);
+  --glass-bg-strong: rgba(13, 43, 43, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 0 4px rgba(20, 184, 166, 0.25);
+
+  --c-green-100: #064e3b;
+  --c-green-500: #10b981;
+  --c-green-700: #34d399;
+  --c-red-100: #450a0a;
+  --c-red-600: #ef4444;
+  --c-amber-100: #451a03;
+  --c-amber-600: #f59e0b;
+  --c-purple-100: #2e1065;
+  --c-purple-600: #a78bfa;
+  --c-blue-100: #172554;
+  --c-blue-800: #93c5fd;
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

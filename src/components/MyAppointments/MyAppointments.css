@@ -1,0 +1,128 @@
+.my-appointments {
+  padding: var(--space-8) 0;
+  background: var(--c-surface-alt);
+}
+
+.my-appointments__header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+.my-appointments__header h2 {
+  font-size: var(--text-2xl);
+  color: var(--c-teal-900);
+  margin-bottom: var(--space-1);
+}
+.my-appointments__header p {
+  color: var(--c-text-muted);
+  font-size: var(--text-base);
+}
+
+.my-appointments__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  gap: var(--space-3);
+  color: var(--c-text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.my-appointments__empty svg {
+  color: var(--c-teal-200);
+}
+.my-appointments__empty h3 {
+  color: var(--c-text);
+  font-size: var(--text-lg);
+}
+.my-appointments__empty p {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.my-appointments__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.my-appointments__card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.my-appointments__card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.my-appointments__card-badge {
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+.my-appointments__card-body {
+  padding: var(--space-2) var(--space-4) var(--space-3);
+  flex: 1;
+}
+
+.my-appointments__doctor {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: var(--space-3);
+}
+
+.my-appointments__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.my-appointments__meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--c-text-muted);
+}
+.my-appointments__meta-item svg {
+  color: var(--c-teal-500);
+  flex-shrink: 0;
+}
+
+.my-appointments__card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-top: 1px solid var(--c-border-soft);
+  background: var(--c-surface-alt);
+  font-size: var(--text-xs);
+  color: var(--c-text-faint);
+}
+
+.my-appointments__patient {
+  font-weight: 600;
+  color: var(--c-text-muted);
+}
+
+.my-appointments__token {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--c-teal-900);
+  background: var(--c-teal-50);
+  border: 1px solid var(--c-teal-200);
+  padding: 2px var(--space-2);
+  border-radius: var(--r-sm);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+  .my-appointments__grid {
+    grid-template-columns: 1fr;
+  }
+}
