@@ -17,6 +17,7 @@ import AmeroidsLoader from "./components/AmeroidsLoader/AmeroidsLoader.jsx";
 export default function App() {
   const [auth, setAuth] = useState(null); // { role: 'user'|'admin', its: '...' }
   const [pendingAuth, setPendingAuth] = useState(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showFAQ, setShowFAQ] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [bookingDoctor, setBookingDoctor] = useState(null);
@@ -29,7 +30,9 @@ export default function App() {
   return (
     <BookingProvider>
       <RosterProvider>
-        {!auth && !pendingAuth ? (
+        {isInitialLoad ? (
+          <AmeroidsLoader onComplete={() => setIsInitialLoad(false)} />
+        ) : !auth && !pendingAuth ? (
           <Login onLogin={setPendingAuth} />
         ) : pendingAuth ? (
           <AmeroidsLoader onComplete={() => {
