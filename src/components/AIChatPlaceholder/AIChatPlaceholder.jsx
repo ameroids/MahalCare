@@ -17,7 +17,7 @@ export default function AIChatPlaceholder() {
                 <span>AI-powered support</span>
               </div>
             </div>
-            <button className="btn btn-ghost ai-chat__close" onClick={() => setIsOpen(false)} aria-label="Close Chat">
+            <button className="ai-chat__close" onClick={() => setIsOpen(false)} aria-label="Close Chat">
               <X size={18} />
             </button>
           </div>

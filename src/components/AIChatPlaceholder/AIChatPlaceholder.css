@@ -92,6 +92,14 @@
 .ai-chat__close {
   color: rgba(255,255,255,0.8);
   padding: var(--space-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  transition: all 0.2s;
 }
 .ai-chat__close:hover {
   color: #fff;

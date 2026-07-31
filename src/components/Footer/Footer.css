@@ -115,11 +115,15 @@
 
 .footer__bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   padding-top: 24px;
+  padding-bottom: 8px;
   font-size: 0.84rem;
   color: rgba(244, 253, 252, 0.65);
+  text-align: center;
 }
 
 .footer__top-credit {
