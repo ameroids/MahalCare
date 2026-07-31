@@ -1,12 +1,11 @@
 const BOOKINGS_KEY = "shifa_bookings";
 
 /**
- * Generate a daily sequential token starting at 001 for each date.
- * Format: 001, 002, 003, etc.
+ * Generate a sequential token starting at 001.
+ * Using a global counter so it increments consistently during testing.
  */
 export function generateDailyToken(date) {
-  const targetDate = date || new Date().toISOString().split("T")[0];
-  const storageKey = `mahala_token_counter_${targetDate}`;
+  const storageKey = `mahala_global_token_counter`;
   let count = parseInt(localStorage.getItem(storageKey) || "0", 10);
   count += 1;
   localStorage.setItem(storageKey, count.toString());
