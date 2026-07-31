@@ -1,10 +1,14 @@
 .footer {
   position: relative;
   z-index: 10;
-  background: var(--c-primary-900);
+  background: #0a3d3d;
   color: rgba(244, 253, 252, 0.75);
   padding: 60px 0 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .footer {
+  background: var(--c-bg);
 }
 
 .footer__grid {

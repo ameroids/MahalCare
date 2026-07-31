@@ -50,3 +50,9 @@
   flex-shrink: 0;
 }
 .admin-modal__close:hover { background: var(--c-teal-100); }
+
+@media (max-width: 480px) {
+  .admin-modal {
+    padding: 16px;
+  }
+}

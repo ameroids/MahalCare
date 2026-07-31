@@ -285,3 +285,20 @@
     padding: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .doctor-modal {
+    padding: var(--space-3);
+  }
+  .doctor-modal__actions {
+    flex-direction: column;
+  }
+  .doctor-modal__book-btn, .doctor-modal__icon-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .doctor-modal__head {
+    flex-direction: column;
+    text-align: center;
+  }
+}

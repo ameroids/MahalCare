@@ -1,16 +1,39 @@
 .next-day {
-  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-surface) 100%);
+  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-surface) 100%),
+              repeating-radial-gradient(circle at 20% 50%, transparent 0, transparent 20px, rgba(15, 118, 110, 0.04) 20px, rgba(15, 118, 110, 0.04) 21px);
+  background-blend-mode: overlay;
+  position: relative;
+  overflow: hidden;
 }
+
+.next-day .container {
+  position: relative;
+  z-index: 2;
+}
+
+
 
 .next-day__head {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 16px;
 }
 
-.next-day__controls { display: flex; gap: 10px; }
+.next-day__title-wrap {
+  text-align: left;
+}
+
+.next-day__title-wrap .eyebrow {
+  justify-content: flex-start;
+  width: auto;
+}
+
+.next-day__controls { 
+  display: flex; 
+  gap: 10px; 
+}
 
 .next-day__arrow {
   width: 42px; height: 42px;

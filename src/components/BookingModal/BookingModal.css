@@ -201,3 +201,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .booking-modal {
+    padding: 1.5rem;
+  }
+  .booking-modal__header h2 {
+    font-size: 1.3rem;
+  }
+}

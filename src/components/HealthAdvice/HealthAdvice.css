@@ -211,3 +211,19 @@
     text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .health-timeline__item:nth-child(odd) .health-timeline__content,
+  .health-timeline__item:nth-child(even) .health-timeline__content {
+    margin: 0 0 0 40px;
+    width: calc(100% - 40px);
+  }
+  .health-timeline::before {
+    left: 16px;
+  }
+  .health-timeline__number {
+    font-size: 3rem;
+    left: -8px;
+    top: -16px;
+  }
+}

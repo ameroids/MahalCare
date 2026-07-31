@@ -55,7 +55,7 @@ export default function NextDayCarousel({ onBookClick }) {
     <section id="next-day" className="section next-day">
       <div className="container">
         <div className="section-head next-day__head">
-          <div>
+          <div className="next-day__title-wrap">
             <span className="eyebrow">Tomorrow at a glance</span>
             <h2 className="section-title">Next Day Doctors</h2>
             <p className="section-sub">{formatLongDate(tomorrow)}</p>

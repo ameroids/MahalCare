@@ -344,4 +344,21 @@
   .hero__slip {
     max-width: 300px;
   }
+  .hero__cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero__cta-primary, .hero__cta-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__slip {
+    max-width: 260px;
+  }
+  .hero__title {
+    font-size: 1.5rem;
+  }
 }

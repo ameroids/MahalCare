@@ -105,7 +105,7 @@
   font-size: 0.62rem;
   font-weight: 600;
   color: var(--c-teal-800);
-  background: rgba(255,255,255,0.7);
+  background: var(--c-teal-100);
   border-radius: 5px;
   padding: 1px 5px;
   white-space: nowrap;
@@ -128,5 +128,18 @@
     width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--c-teal-600);
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-view__weekdays span {
+    font-size: 0.6rem;
+  }
+  .calendar-view__cell {
+    min-height: 38px;
+    padding: 2px;
+  }
+  .calendar-view__day-num {
+    font-size: 0.75rem;
   }
 }
