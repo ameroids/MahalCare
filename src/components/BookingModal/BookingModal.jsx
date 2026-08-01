@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, Calendar, Clock, User, Phone, FileText, Send, CheckCircle2, Hash } from "lucide-react";
+import { X, Calendar, Clock, User, Phone, FileText, Send, CheckCircle2, Hash, AlertCircle } from "lucide-react";
 import { useRoster } from "../../context/RosterContext.jsx";
 import { formatLongDate } from "../../utils/dateUtils.js";
 import { generateDailyToken } from "../../data/bookingService.js";
@@ -163,6 +163,11 @@ Please confirm my appointment. Thank you!`;
                   value={formData.reason}
                   onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
                 />
+              </div>
+
+              <div className="booking-modal__warning" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 12px', backgroundColor: 'rgba(217, 119, 6, 0.1)', border: '1px solid rgba(217, 119, 6, 0.3)', borderRadius: '8px', color: 'var(--c-amber-700)', fontSize: '0.85rem', lineHeight: '1.4', marginTop: '4px' }}>
+                <AlertCircle size={18} style={{ flexShrink: 0 }} />
+                <span><strong>Important:</strong> Your appointment will only be booked if you press <strong>Send</strong> after WhatsApp opens!</span>
               </div>
 
               <button type="submit" className="btn btn-primary booking-modal__submit">
