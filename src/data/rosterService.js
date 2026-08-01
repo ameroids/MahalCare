@@ -2,21 +2,35 @@
 // Roster storage service
 // -----------------------------------------------------------------------
 // Every other part of the app talks to the roster ONLY through the
-// functions exported here. Today that means localStorage; tomorrow it
-// could mean a REST/GraphQL API behind an admin login and token — see the
-// commented `// FUTURE:` notes below for exactly where that swap happens.
-// Nothing in RosterContext.jsx or the components needs to change.
+// functions exported here. Now wired to use Supabase.
 // -----------------------------------------------------------------------
 
-const STORAGE_KEY = "mahala_shifa_roster_v3";
+import { supabase } from '../supabaseClient';
+
 const META_KEY = "mahala_shifa_roster_meta_v3";
 
-export function loadRoster() {
-  // FUTURE: replace with `await api.get('/roster')`
+export async function loadRoster() {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
+    const { data, error } = await supabase.from('roster').select('*');
+    if (error) {
+      console.error("Supabase load error:", error);
+      return null;
+    }
+    
+    // Map database columns back to camelCase as expected by the app
+    if (data && data.length > 0) {
+      return data.map(row => ({
+        id: row.id,
+        date: row.date,
+        doctorName: row.doctor_name,
+        specialty: row.specialty,
+        timing: row.timing,
+        photo: row.photo
+      }));
+    }
+    return null;
+  } catch (err) {
+    console.error("Failed to load roster from Supabase:", err);
     return null;
   }
 }
@@ -30,12 +44,29 @@ export function loadMeta() {
   }
 }
 
-export function saveRoster(entries, meta = {}) {
+export async function saveRoster(entries, meta = {}) {
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    // 1. Delete all existing records (assuming we replace the whole roster on upload)
+    await supabase.from('roster').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+
+    // 2. Insert new entries
+    const dbEntries = entries.map(e => ({
+      date: e.date,
+      doctor_name: e.doctorName,
+      specialty: e.specialty,
+      timing: e.timing,
+      photo: e.photo
+    }));
+    
+    const { error } = await supabase.from('roster').insert(dbEntries);
+    if (error) {
+      console.error("Supabase save error:", error);
+    }
   } catch (err) {
-    console.error("Failed to save roster to localStorage:", err);
+    console.error("Failed to save roster to Supabase:", err);
   }
+
+  // We can still keep meta locally, or eventually move it to a 'meta' table in supabase
   const fullMeta = {
     uploadedAt: new Date().toISOString(),
     fileName: meta.fileName || "",
@@ -47,12 +78,17 @@ export function saveRoster(entries, meta = {}) {
   } catch (err) {
     console.error("Failed to save meta to localStorage:", err);
   }
+  
   window.dispatchEvent(new CustomEvent("roster:updated"));
   return fullMeta;
 }
 
-export function clearRoster() {
-  window.localStorage.removeItem(STORAGE_KEY);
+export async function clearRoster() {
+  try {
+    await supabase.from('roster').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+  } catch (err) {
+    console.error("Failed to clear roster in Supabase:", err);
+  }
   window.localStorage.removeItem(META_KEY);
   window.dispatchEvent(new CustomEvent("roster:updated"));
 }

@@ -12,8 +12,8 @@ export function RosterProvider({ children }) {
   const [isDemo, setIsDemo] = useState(false);
   const [uploadState, setUploadState] = useState({ status: "idle", error: "", skipped: 0 });
 
-  const refresh = useCallback(() => {
-    const stored = loadRoster();
+  const refresh = useCallback(async () => {
+    const stored = await loadRoster();
     if (stored && stored.length > 0) {
       setEntries(stored);
       setMeta(loadMeta());
@@ -58,8 +58,8 @@ export function RosterProvider({ children }) {
     }
   }, []);
 
-  const confirmUpload = useCallback((normalizedEntries, fileName) => {
-    const savedMeta = saveRoster(normalizedEntries, { fileName });
+  const confirmUpload = useCallback(async (normalizedEntries, fileName) => {
+    const savedMeta = await saveRoster(normalizedEntries, { fileName });
     setEntries(normalizedEntries);
     setMeta(savedMeta);
     setIsDemo(false);
@@ -70,8 +70,8 @@ export function RosterProvider({ children }) {
     setUploadState({ status: "idle", error: "", skipped: 0 });
   }, []);
 
-  const resetToDemo = useCallback(() => {
-    clearRoster();
+  const resetToDemo = useCallback(async () => {
+    await clearRoster();
     refresh();
   }, [refresh]);
 
