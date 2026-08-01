@@ -5,6 +5,7 @@ import CalendarView from "../CalendarView/CalendarView.jsx";
 import DoctorCard from "../DoctorCard/DoctorCard.jsx";
 import DoctorModal from "../DoctorModal/DoctorModal.jsx";
 import { formatLongDate, formatShortDate, getTodayISO } from "../../utils/dateUtils.js";
+import { motion } from "framer-motion";
 import "./MonthlyRoster.css";
 
 export default function MonthlyRoster({ onBookClick }) {
@@ -66,7 +67,13 @@ export default function MonthlyRoster({ onBookClick }) {
 
   return (
     <section id="monthly-roster" className="section monthly-roster">
-      <div className="container">
+      <motion.div 
+        className="container"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="section-head monthly-roster__head">
           <div>
             <span className="eyebrow">The full picture</span>
@@ -157,7 +164,7 @@ export default function MonthlyRoster({ onBookClick }) {
             )}
           </div>
         )}
-      </div>
+      </motion.div>
 
       {selectedEntry && <DoctorModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />}
     </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Droplet, Moon, Stethoscope, Apple, Info } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './HealthAdvice.css';
 
 const ADVICES = [
@@ -37,7 +38,15 @@ export default function HealthAdvice() {
 
         <div className="health-timeline" role="list">
           {ADVICES.map((advice, index) => (
-            <article key={index} className="health-timeline__item" role="listitem">
+            <motion.article 
+              key={index} 
+              className="health-timeline__item" 
+              role="listitem"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
+            >
               <div className="health-timeline__number" aria-hidden="true">0{index + 1}</div>
               <div className="health-timeline__content glass-card">
                 <div className="health-timeline__icon-blob" aria-hidden="true">
@@ -48,14 +57,21 @@ export default function HealthAdvice() {
                   <p>{advice.description}</p>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
         
-        <aside className="health-advice__footer-banner glass-card" aria-label="Health Disclaimer">
+        <motion.aside 
+          className="health-advice__footer-banner glass-card" 
+          aria-label="Health Disclaimer"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
           <Info className="banner-icon" aria-hidden="true" />
           <p>These are general wellness tips. For specific medical conditions, always consult our doctors through the Appointment System.</p>
-        </aside>
+        </motion.aside>
       </div>
     </section>
   );

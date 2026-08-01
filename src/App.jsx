@@ -48,9 +48,8 @@ export default function App() {
   return (
     <BookingProvider>
       <RosterProvider>
-        {isInitialLoad ? (
-          <AmeroidsLoader onComplete={() => setIsInitialLoad(false)} />
-        ) : !auth && !pendingAuth ? (
+        {/* Main Content */}
+        {!auth && !pendingAuth ? (
           <Login onLogin={setPendingAuth} />
         ) : pendingAuth ? (
           <AmeroidsLoader onComplete={() => {
@@ -88,6 +87,11 @@ export default function App() {
             {showBooking && <BookingModal initialDoctor={bookingDoctor} onClose={() => setShowBooking(false)} />}
             <WhatsAppButton />
           </>
+        )}
+
+        {/* Loader Overlay */}
+        {isInitialLoad && (
+          <AmeroidsLoader onComplete={() => setIsInitialLoad(false)} />
         )}
       </RosterProvider>
     </BookingProvider>

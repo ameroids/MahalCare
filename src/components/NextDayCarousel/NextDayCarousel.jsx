@@ -3,6 +3,7 @@ import { useRoster } from "../../context/RosterContext.jsx";
 import NextDayDoctorCard from "./NextDayDoctorCard.jsx";
 import DoctorModal from "../DoctorModal/DoctorModal.jsx";
 import { getTomorrowISO, formatLongDate } from "../../utils/dateUtils.js";
+import { motion } from "framer-motion";
 import "./NextDayCarousel.css";
 
 const AUTOPLAY_MS = 5000;
@@ -104,7 +105,13 @@ export default function NextDayCarousel({ onBookClick }) {
         <circle cx="760"  cy="355" r="2"   fill="rgba(15,118,110,0.18)"/>
       </svg>
 
-      <div className="container">
+      <motion.div 
+        className="container"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="section-head next-day__head">
           <div className="next-day__title-wrap">
             <span className="eyebrow">Tomorrow at a glance</span>
@@ -159,7 +166,7 @@ export default function NextDayCarousel({ onBookClick }) {
             )}
           </>
         )}
-      </div>
+      </motion.div>
 
       {selected && <DoctorModal entry={selected} onClose={() => setSelected(null)} />}
     </section>
