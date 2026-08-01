@@ -73,7 +73,7 @@ Please confirm my appointment. Thank you!`;
         {!submittedToken ? (
           <>
             <div className="booking-modal__header">
-              <img src="/MahalCare_Logo.png" alt="MahalCare Logo" style={{ height: '42px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 10px', borderRadius: '8px', marginBottom: '0.75rem', display: 'inline-block' }} />
+              <img src="/MahalCare_Logo.png" alt="MahalCare Logo" style={{ height: '42px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 10px', borderRadius: '8px', marginBottom: '0.75rem', display: 'block', margin: '0 auto 0.75rem auto' }} />
               <span className="eyebrow">Quick & Easy</span>
               <h2>Book an Appointment</h2>
               <p>Fill in your details below. Your request will be pre-formatted and forwarded directly to our WhatsApp helpdesk.</p>
