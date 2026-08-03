@@ -35,9 +35,13 @@ export default function NextDayDoctorCard({ entry, onViewDetails, onBook }) {
           <span className="nd-card__eyebrow">Tomorrow's Doctor</span>
           <span className="nd-card__brand">MahalCare</span>
         </div>
-        <div className="nd-card__avatar" aria-hidden="true">
-          {initials(name)}
-        </div>
+        {entry?.photo ? (
+          <img src={entry.photo} alt={name} className="nd-card__avatar-photo" />
+        ) : (
+          <div className="nd-card__avatar" aria-hidden="true">
+            {initials(name)}
+          </div>
+        )}
       </div>
 
       {/* ── Info rows ── */}

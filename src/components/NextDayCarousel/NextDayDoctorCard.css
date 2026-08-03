@@ -67,6 +67,15 @@
   box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
 }
 
+.nd-card__avatar-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+}
+
 /* ── Body rows ── */
 .nd-card__body {
   padding: 0 22px;

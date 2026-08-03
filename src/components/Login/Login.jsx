@@ -11,15 +11,14 @@ export default function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (its.trim().length === 8) {
+    if (its === 'admin@786') {
       setError('');
-      if (its === '12345678') {
-        onLogin({ role: 'admin', its });
-      } else {
-        onLogin({ role: 'user', its });
-      }
+      onLogin({ role: 'admin', its });
+    } else if (its.trim().length === 8 && /^\d+$/.test(its.trim())) {
+      setError('');
+      onLogin({ role: 'user', its });
     } else {
-      setError("Please enter exactly 8 digits.");
+      setError("Please enter exactly 8 digits for ITS.");
     }
   };
 
@@ -67,18 +66,10 @@ export default function Login({ onLogin }) {
             <input 
               id="its-input"
               type="text" 
-              inputMode="numeric"
-              pattern="[0-9]*"
-              maxLength="8"
               placeholder="• • • • • • • •" 
               value={its}
-              onKeyDown={(e) => {
-                if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key) || e.ctrlKey || e.metaKey) return;
-                if (!/^[0-9]$/.test(e.key)) e.preventDefault();
-              }}
               onChange={(e) => {
-                const val = e.target.value.replace(/[^0-9]/g, '');
-                if (val.length <= 8) setIts(val);
+                setIts(e.target.value);
                 if (error) setError('');
               }}
               required
