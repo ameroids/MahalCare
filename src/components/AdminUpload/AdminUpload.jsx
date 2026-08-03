@@ -116,7 +116,7 @@ export default function AdminUpload({ onDone }) {
               </tr>
             </thead>
             <tbody>
-              {preview.entries.slice(0, 12).map((e, idx) => (
+              {preview.entries.map((e, idx) => (
                 <tr key={e.id || idx}>
                   <td>
                     {e.photo ? (
@@ -146,7 +146,6 @@ export default function AdminUpload({ onDone }) {
               ))}
             </tbody>
           </table>
-          {preview.entries.length > 12 && <p className="admin-upload__more">+ {preview.entries.length - 12} more rows</p>}
         </div>
 
         <div className="admin-upload__actions">
