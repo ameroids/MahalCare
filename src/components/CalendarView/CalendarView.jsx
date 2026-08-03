@@ -102,7 +102,7 @@ export default function CalendarView({ year, monthIndex, entriesByDate, selected
               onClick={() => onSelectDate(cell.iso)}
             >
               <span className="calendar-view__day-num" style={isHijri ? { fontSize: '1.2em', fontWeight: 'bold' } : {}}>{getDisplayDay(cell, dayEntries)}</span>
-              {dayEntries.length > 0 && (
+              {dayEntries.length > 0 ? (
                 <span className="calendar-view__chips">
                   {dayEntries.slice(0, 2).map((e) => (
                     <span key={e.id} className="calendar-view__chip">{e.doctorName.replace(/^Dr\.?\s*/i, "")}</span>
@@ -110,6 +110,12 @@ export default function CalendarView({ year, monthIndex, entriesByDate, selected
                   {dayEntries.length > 2 && (
                     <span className="calendar-view__chip calendar-view__chip--more">+{dayEntries.length - 2} more</span>
                   )}
+                </span>
+              ) : (
+                <span className="calendar-view__chips">
+                  <span className="calendar-view__chip" style={{ background: "transparent", border: "1px dashed var(--c-border-soft)", color: "var(--c-text-faint)", fontWeight: "normal" }}>
+                    No Schedule
+                  </span>
                 </span>
               )}
             </button>
