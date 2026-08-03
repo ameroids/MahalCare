@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { UploadCloud, FileSpreadsheet, CheckCircle, X, Download, RotateCcw, Camera } from "lucide-react";
+import { UploadCloud, FileSpreadsheet, CheckCircle, X, Download, RotateCcw, Camera, Edit } from "lucide-react";
 import { useRoster } from "../../context/RosterContext.jsx";
 import * as XLSX from "xlsx";
 import "./AdminUpload.css";
@@ -208,13 +208,23 @@ export default function AdminUpload({ onDone }) {
             <Download size={14} aria-hidden="true" /> Template
           </button>
           {!isDemo && (
-            <button 
-              className="btn btn-ghost btn-sm text-red" 
-              onClick={() => setShowConfirmReset(true)} 
-              aria-label="Reset to Demo Data"
-            >
-              <RotateCcw size={14} aria-hidden="true" /> Reset Data
-            </button>
+            <>
+              <button 
+                className="btn btn-ghost btn-sm" 
+                onClick={() => setPreview({ entries: [...entries], skipped: 0, fileName: meta?.fileName || "Current Roster" })} 
+                aria-label="Update Photos"
+                style={{ color: '#0ea5e9' }}
+              >
+                <Edit size={14} aria-hidden="true" /> Update Photos
+              </button>
+              <button 
+                className="btn btn-ghost btn-sm text-red" 
+                onClick={() => setShowConfirmReset(true)} 
+                aria-label="Reset to Demo Data"
+              >
+                <RotateCcw size={14} aria-hidden="true" /> Reset Data
+              </button>
+            </>
           )}
         </div>
       </div>
