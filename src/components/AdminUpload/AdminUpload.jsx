@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { UploadCloud, FileSpreadsheet, CheckCircle, X, Download, RotateCcw, Camera } from "lucide-react";
 import { useRoster } from "../../context/RosterContext.jsx";
+import * as XLSX from "xlsx";
 import "./AdminUpload.css";
 
 const SAMPLE_JSON = [
@@ -10,13 +11,10 @@ const SAMPLE_JSON = [
 ];
 
 function downloadSampleTemplate() {
-  const blob = new Blob([JSON.stringify(SAMPLE_JSON, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "mahal-us-shifa-roster-template.json";
-  a.click();
-  URL.revokeObjectURL(url);
+  const ws = XLSX.utils.json_to_sheet(SAMPLE_JSON);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Template");
+  XLSX.writeFile(wb, "mahal-us-shifa-roster-template.xlsx");
 }
 
 export default function AdminUpload({ onDone }) {
