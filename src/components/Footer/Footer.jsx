@@ -14,7 +14,7 @@ export default function Footer({ onOpenFAQ }) {
             </span>
             <strong className="footer__brand-name">MahalCare</strong>
           </div>
-          <p className="footer__powered-tag">Powered by Umoor Sehhat</p>
+          <p className="footer__powered-tag">Powered by Umoor Sehhat Indore</p>
           <p className="footer__desc">
             Simplifying healthcare scheduling & doctor rosters for our community with effortless booking.
           </p>

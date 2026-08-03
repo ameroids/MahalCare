@@ -14,6 +14,7 @@ const FIELD_ALIASES = {
   photo: ["photo", "photourl", "image", "imageurl", "picture", "avatar"],
   phone: ["phone", "contact", "phonenumber", "mobile"],
   notes: ["notes", "remarks", "description", "info"],
+  hijriDate: ["hijridate", "hijri", "arabicdate", "islamicdate"],
 };
 
 function keyFor(rawKey) {
@@ -130,6 +131,7 @@ export function normalizeRoster(rawRows) {
     entries.push({
       id: `row-${index}-${finalDate}-${doctorName}`.replace(/\s+/g, "_"),
       date: finalDate,
+      hijriDate: mapped.hijriDate || row.hijriDate || row.hijri || row.arabicDate || "",
       doctorName,
       specialty: mapped.specialty || row.specialty || row.Specialty || row.Speciality || "General",
       timing: mapped.timing || row.timing || row.Timing || row.Time || "Timing not specified",

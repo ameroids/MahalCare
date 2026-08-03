@@ -83,7 +83,7 @@ export default function MonthlyRoster({ onBookClick }) {
 
           <div className="monthly-roster__toggle">
             <button className={view === "calendar" ? "is-active" : ""} onClick={() => setView("calendar")}>Calendar</button>
-            <button className={view === "table" ? "is-active" : ""} onClick={() => setView("table")}>Table</button>
+            <button className={view === "hijri" ? "is-active" : ""} onClick={() => setView("hijri")}>Hijri Calendar</button>
           </div>
         </div>
 
@@ -97,7 +97,7 @@ export default function MonthlyRoster({ onBookClick }) {
           hasActiveFilters={hasActiveFilters}
         />
 
-        {view === "calendar" ? (
+        {(view === "calendar" || view === "hijri") && (
           <div className="monthly-roster__calendar-layout">
             <div className="glass-card monthly-roster__calendar-card">
               <CalendarView
@@ -109,6 +109,7 @@ export default function MonthlyRoster({ onBookClick }) {
                 onPrevMonth={goPrevMonth}
                 onNextMonth={goNextMonth}
                 onToday={goToday}
+                isHijri={view === "hijri"}
               />
             </div>
 
@@ -127,41 +128,6 @@ export default function MonthlyRoster({ onBookClick }) {
                 </div>
               )}
             </div>
-          </div>
-        ) : (
-          <div className="monthly-roster__table-wrap glass-card">
-            {monthEntries.length === 0 ? (
-              <div className="empty-state">
-                <strong>No matching visits this month</strong>
-                <p>Try clearing filters or checking a different month.</p>
-              </div>
-            ) : (
-              <table className="monthly-roster__table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Doctor</th>
-                    <th>Specialty</th>
-                    <th>Timing</th>
-                    <th aria-label="Actions" />
-                  </tr>
-                </thead>
-                <tbody>
-                  {monthEntries.map((entry) => (
-                    <tr key={entry.id}>
-                      <td data-label="Date">{formatShortDate(entry.date)}</td>
-                      <td data-label="Doctor">{entry.doctorName}</td>
-                      <td data-label="Specialty"><span className="badge">{entry.specialty}</span></td>
-                      <td data-label="Timing">{entry.timing}</td>
-                      <td style={{ display: 'flex', gap: '8px' }}>
-                        <button className="btn btn-ghost btn-sm" onClick={() => setSelectedEntry(entry)}>Details</button>
-                        <button className="btn btn-primary btn-sm" onClick={() => onBookClick && onBookClick(entry)}>Book</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
           </div>
         )}
       </motion.div>

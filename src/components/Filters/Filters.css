@@ -39,6 +39,11 @@
   font-size: 0.9rem;
 }
 
+.filters__field select option {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+}
+
 .filters__field--select { flex: 0 1 220px; }
 
 .filters__clear { flex-shrink: 0; }

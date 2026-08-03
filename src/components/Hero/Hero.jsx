@@ -55,7 +55,7 @@ export default function Hero({ onBookClick }) {
         {/* Left: Copy */}
         <motion.div className="hero__copy" variants={stagger} initial="hidden" animate="show">
           <motion.span className="hero__eyebrow" variants={fadeUp}>
-            <ShieldCheck size={14} aria-hidden="true" /> Powered by Umoor Sehhat
+            <ShieldCheck size={14} aria-hidden="true" /> Powered by Umoor Sehhat Indore
           </motion.span>
 
           <motion.h1 id="hero-heading" className="hero__title" variants={fadeUp}>
