@@ -42,6 +42,7 @@
   margin: 0 0 50px 0;
   text-align: center;
   opacity: 1;
+  color: #38bdf8;
 }
 
 .classic-loader__highlight {
@@ -70,12 +71,12 @@
 .classic-loader__progress-text {
   font-size: 0.85rem;
   letter-spacing: 0.1em;
-  color: #14b8a6;
+  color: #38bdf8;
 }
 
 .classic-loader__progress-bar {
   height: 100%;
-  background-color: #14b8a6;
+  background-color: #38bdf8;
   border-radius: 2px;
   transition: width 0.05s linear;
 }

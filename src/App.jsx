@@ -57,7 +57,7 @@ export default function App() {
             setPendingAuth(null);
           }} />
         ) : auth.role === 'admin' ? (
-          <div className="admin-page" style={{ padding: '2rem', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
+          <div className="admin-page" style={{ padding: '1rem', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
             <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -67,7 +67,7 @@ export default function App() {
                 <button className="btn btn-secondary" onClick={() => setAuth(null)}>Logout</button>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div className="glass-card" style={{ padding: '2rem' }}>
+                <div className="glass-card" style={{ padding: '1rem' }}>
                   <AdminUpload onDone={() => {}} />
                 </div>
               </div>

@@ -77,13 +77,7 @@
 }
 
 .calendar-view__cell--today .calendar-view__day-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  background: var(--c-teal-700);
-  color: #fff;
+  color: var(--c-teal-700);
 }
 
 .calendar-view__cell--has-entries { background: var(--c-teal-100); }
@@ -118,17 +112,6 @@
 
 @media (max-width: 700px) {
   .calendar-view__cell { min-height: 48px; padding: 5px; }
-  .calendar-view__chip { display: none; }
-  .calendar-view__chip--more { display: none; }
-  .calendar-view__cell--has-entries::after {
-    content: "";
-    position: absolute;
-    bottom: 5px; left: 50%;
-    transform: translateX(-50%);
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--c-teal-600);
-  }
 }
 
 @media (max-width: 480px) {

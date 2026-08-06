@@ -10,7 +10,7 @@ export default function AmeroidsLoader({ onComplete }) {
     
     const updateProgress = () => {
       // Smooth incremental progress
-      current += 1.5; 
+      current += 0.8; 
       
       if (current >= 100) {
         current = 100;
@@ -22,7 +22,7 @@ export default function AmeroidsLoader({ onComplete }) {
           setTimeout(() => {
             if (onComplete) onComplete();
           }, 800); // Wait for CSS opacity transition
-        }, 400); 
+        }, 600); 
         return;
       }
       

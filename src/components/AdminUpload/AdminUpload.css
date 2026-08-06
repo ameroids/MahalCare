@@ -47,9 +47,10 @@
   flex-wrap: wrap;
   font-size: var(--text-sm);
   color: var(--c-text-muted);
+  word-break: break-word;
 }
 
-.admin-upload__meta-actions { display: flex; gap: var(--space-2); }
+.admin-upload__meta-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 
 .admin-upload__note {
   margin-top: var(--space-4);
