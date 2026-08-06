@@ -49,6 +49,19 @@
 .filters__clear { flex-shrink: 0; }
 
 @media (max-width: 600px) {
-  .filters { flex-direction: column; align-items: stretch; }
-  .filters__field--select { flex: 1 1 auto; }
+  .filters { 
+    flex-direction: column; 
+    align-items: stretch; 
+    padding: 10px;
+    gap: 8px;
+  }
+  .filters__field {
+    padding: 8px 12px;
+    flex: none; /* Reset flex-basis so it doesn't become height */
+    width: 100%;
+  }
+  .filters__field input, .filters__field select {
+    font-size: 0.85rem;
+  }
+  .filters__field--select { flex: none; width: 100%; }
 }
