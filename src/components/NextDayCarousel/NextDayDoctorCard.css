@@ -1,0 +1,225 @@
+/* ============================================================
+   NextDayDoctorCard — premium appointment card
+   ============================================================ */
+
+.nd-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(10, 61, 61, 0.18), 0 2px 8px rgba(10,61,61,0.08);
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nd-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(10, 61, 61, 0.22), 0 4px 12px rgba(10,61,61,0.1);
+}
+
+/* ── Header ── */
+.nd-card__header {
+  background: linear-gradient(135deg, #0a3d3d 0%, #0d5050 60%, #0f766e 100%);
+  padding: 22px 22px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nd-card__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nd-card__eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2dd4bf;
+}
+
+.nd-card__brand {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.nd-card__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  color: #ffffff;
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+}
+
+.nd-card__avatar-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+}
+
+/* ── Body rows ── */
+.nd-card__body {
+  padding: 0 22px;
+  background: #fafff9;
+  border-bottom: 1px solid #e8f5f0;
+}
+
+.nd-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #eef7f4;
+  gap: 12px;
+}
+
+.nd-card__row--last {
+  border-bottom: none;
+}
+
+.nd-card__label {
+  font-size: 0.88rem;
+  color: #7da3a3;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.nd-card__value {
+  font-size: 0.9rem;
+  color: #0a3d3d;
+  font-weight: 500;
+  text-align: right;
+}
+
+.nd-card__value--name {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.nd-card__value--bold {
+  font-weight: 700;
+  color: #0a3d3d;
+}
+
+.nd-card__value--teal {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+/* ── Footer / actions ── */
+.nd-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: #fafff9;
+  gap: 10px;
+}
+
+.nd-card__btn-ghost {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #3d6b6b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nd-card__btn-ghost:hover {
+  color: #0a3d3d;
+}
+
+.nd-card__btn-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0f766e, #0d4f4f);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(15,118,110,0.3);
+}
+
+.nd-card__btn-book:hover {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(15,118,110,0.4);
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .nd-card {
+  background: #0d2b2b;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .nd-card__body,
+[data-theme="dark"] .nd-card__footer {
+  background: #0d2b2b;
+  border-color: #1a4a4a;
+}
+
+[data-theme="dark"] .nd-card__row {
+  border-color: #1a4a4a;
+}
+
+[data-theme="dark"] .nd-card__label {
+  color: #4db6ac;
+}
+
+[data-theme="dark"] .nd-card__value {
+  color: #e0f2f1;
+}
+
+[data-theme="dark"] .nd-card__value--bold {
+  color: #e0f2f1;
+}
+
+[data-theme="dark"] .nd-card__btn-ghost {
+  color: #80cbc4;
+}
+
+[data-theme="dark"] .nd-card__btn-ghost:hover {
+  color: #e0f2f1;
+}
+
+@media (max-width: 480px) {
+  .nd-card {
+    max-width: 100%;
+  }
+  .nd-card__header {
+    padding: 18px;
+  }
+  .nd-card__body, .nd-card__footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

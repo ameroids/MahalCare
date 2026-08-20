@@ -1,0 +1,146 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #104b43; /* Exact dark teal background from the image */
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.login-particle {
+  position: absolute;
+  bottom: -100px;
+  animation: floatUp linear infinite;
+  filter: grayscale(1) brightness(200%) opacity(0.3);
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-120vh) rotate(360deg); }
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  background-color: #d8e3de; /* The frosted grey-mint card background */
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.login-logo-container {
+  background-color: #ffffff;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  border-radius: 24px; /* Highly rounded square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.login-logo {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-subtitle {
+  color: #3b5650;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.login-input {
+  width: 100%;
+  background-color: #eaf5f2; /* Super light mint */
+  border: none;
+  border-radius: 9999px; /* Pill shape */
+  padding: 16px 20px;
+  font-size: 1.25rem;
+  color: #104b43;
+  text-align: center;
+  letter-spacing: 0.25em;
+  outline: none;
+  font-weight: 700;
+}
+.login-input::placeholder {
+  color: #7b948d;
+  font-size: 1.5rem;
+}
+.login-input:focus {
+  box-shadow: inset 0 0 0 2px #104b43;
+}
+.login-input--error {
+  box-shadow: inset 0 0 0 2px #e11d48;
+}
+.login-error-msg {
+  color: #e11d48;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+.login-btn {
+  background-color: #104b43;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.1s, box-shadow 0.2s;
+  margin: 8px 10px 0 10px; /* Room for the box shadow */
+}
+.login-btn:hover {
+  box-shadow: 0 0 0 3px #d8e3de, 0 0 0 4.5px #104b43;
+}
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+.login-quote-section {
+  border-top: 1px solid rgba(16, 75, 67, 0.15);
+  padding-top: 25px;
+  position: relative;
+  color: #3b5650;
+  margin-top: 10px;
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+.quote-divider {
+  display: flex;
+  justify-content: center;
+  color: #5d756d;
+}

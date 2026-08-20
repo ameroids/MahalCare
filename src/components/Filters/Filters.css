@@ -1,0 +1,67 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 26px;
+}
+
+.filters__field {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  color: var(--c-text-muted);
+  flex: 1 1 220px;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.filters__field:hover {
+  border-color: var(--c-teal-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.filters__field:focus-within {
+  border-color: var(--c-teal-500);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+.filters__field input, .filters__field select {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--c-text);
+  font-size: 0.9rem;
+}
+
+.filters__field select option {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+}
+
+.filters__field--select { flex: 0 1 220px; }
+
+.filters__clear { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .filters { 
+    flex-direction: column; 
+    align-items: stretch; 
+    padding: 10px;
+    gap: 8px;
+  }
+  .filters__field {
+    padding: 8px 12px;
+    flex: none; /* Reset flex-basis so it doesn't become height */
+    width: 100%;
+  }
+  .filters__field input, .filters__field select {
+    font-size: 0.85rem;
+  }
+  .filters__field--select { flex: none; width: 100%; }
+}
