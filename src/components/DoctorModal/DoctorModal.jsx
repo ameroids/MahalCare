@@ -55,7 +55,7 @@ export default function DoctorModal({ entry, onClose }) {
     setView("success");
 
     const message = 
-`*MahalCare Appointment Request*
+`*Mahal al Shifa Appointment Request*
 ---------------------------------
 *Patient Name:* ${formData.name}
 *ITS Number:* ${formData.its}

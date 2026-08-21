@@ -53,8 +53,14 @@ export default function Login({ onLogin }) {
 
       <div className="login-box">
         <div className="login-header">
-          <div className="login-logo-container">
-            <img src="/MahalCare_Logo.png" alt="MahalCare Logo" className="login-logo" />
+          <div className="login-logo-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+            <img 
+              src="/mahal-al-shifa-logo.png" 
+              alt="Mahal al Shifa Logo" 
+              className="login-logo" 
+              style={{ backgroundColor: '#ffffff', padding: '6px 16px', borderRadius: '8px', margin: 0 }} 
+            />
+            <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#0f172a', whiteSpace: 'nowrap' }}>Mahal Al Shifa</h1>
           </div>
           <p className="login-subtitle">
             Enter your ITS number to access the<br />Appointment System.

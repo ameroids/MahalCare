@@ -10,9 +10,9 @@ export default function Footer({ onOpenFAQ }) {
         <div className="footer__col footer__col--brand">
           <div className="footer__brand-logo">
             <span className="footer__logo-bg">
-              <img src="/MahalCare_Logo.png" alt="MahalCare Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+              <img src="/mahal-al-shifa-logo.png" alt="Mahal al Shifa Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain', display: 'block' }} />
             </span>
-            <strong className="footer__brand-name">MahalCare</strong>
+            <strong className="footer__brand-name">Mahal al Shifa</strong>
           </div>
           <p className="footer__powered-tag">Powered by Umoor Sehhat Indore</p>
           <p className="footer__desc">
@@ -62,20 +62,20 @@ export default function Footer({ onOpenFAQ }) {
             </li>
             <li>
               <Mail size={16} className="footer__contact-icon" />
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ameroidstechstudio@gmail.com" target="_blank" rel="noopener noreferrer">ameroidstechstudio@gmail.com</a>
+              <a href="mailto:contact@ameroids.in">contact@ameroids.in</a>
             </li>
             <li>
               <MapPin size={16} className="footer__contact-icon" />
-              <span>Mahal us Shifa Medical Center</span>
+              <span>Mahal al Shifa Medical Center</span>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="container footer__bottom">
-        <p>© {new Date().getFullYear()} MahalCare. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Mahal al Shifa. All rights reserved.</p>
         <span className="footer__top-credit">
-          Developed by <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ameroidstechstudio@gmail.com" target="_blank" rel="noopener noreferrer" className="footer__credit-link" title="Open Gmail Compose"><strong>Ameroid Tech Studio</strong></a>
+          Developed by <a href="https://ameroids.in" target="_blank" rel="noopener noreferrer" className="footer__credit-link" title="Visit Ameroids Tech Studio"><strong>Ameroids Tech Studio</strong></a>
         </span>
       </div>
     </footer>

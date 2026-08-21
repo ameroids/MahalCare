@@ -5,7 +5,7 @@ import { formatLongDate } from "../../utils/dateUtils.js";
 import { generateDailyToken } from "../../data/bookingService.js";
 import "./BookingModal.css";
 
-const WHATSAPP_NUMBER = "917223861653"; // Umoor Sehhat / MahalCare desk number
+const WHATSAPP_NUMBER = "917223861653"; // Umoor Sehhat / Mahal al Shifa desk number
 
 export default function BookingModal({ initialDoctor = null, onClose }) {
   const { entries } = useRoster();
@@ -47,7 +47,7 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
 
     // Format WhatsApp message
     const message = 
-`*MahalCare Appointment Request*
+`*Mahal al Shifa Appointment Request*
 ---------------------------------
 *Patient Name:* ${formData.name}
 *ITS Number:* ${formData.its}
@@ -73,7 +73,10 @@ Please confirm my appointment. Thank you!`;
         {!submittedToken ? (
           <>
             <div className="booking-modal__header">
-              <img src="/MahalCare_Logo.png" alt="MahalCare Logo" style={{ height: '42px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 10px', borderRadius: '8px', marginBottom: '0.75rem', display: 'block', margin: '0 auto 0.75rem auto' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '0.75rem' }}>
+                <img src="/mahal-al-shifa-logo.png" alt="Mahal al Shifa Logo" style={{ height: '42px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 10px', borderRadius: '8px', display: 'block' }} />
+                <h2 style={{ margin: 0, fontSize: '1.5rem', whiteSpace: 'nowrap' }}>Mahal Al Shifa</h2>
+              </div>
               <span className="eyebrow">Quick & Easy</span>
               <h2>Book an Appointment</h2>
               <p>Fill in your details below. Your request will be pre-formatted and forwarded directly to our WhatsApp helpdesk.</p>
@@ -179,7 +182,7 @@ Please confirm my appointment. Thank you!`;
           <div className="booking-modal__success">
             <CheckCircle2 size={54} className="success-icon" />
             <h3>Request Sent to WhatsApp!</h3>
-            <p>Your appointment details have been forwarded to MahalCare helpdesk.</p>
+            <p>Your appointment details have been forwarded to Mahal al Shifa helpdesk.</p>
 
             <div className="booking-modal__token-box">
               <span>Your Booking Token</span>

@@ -33,7 +33,7 @@ export default function NextDayDoctorCard({ entry, onViewDetails, onBook }) {
       <div className="nd-card__header">
         <div className="nd-card__header-text">
           <span className="nd-card__eyebrow">Tomorrow's Doctor</span>
-          <span className="nd-card__brand">MahalCare</span>
+          <span className="nd-card__brand">Mahal al Shifa</span>
         </div>
         {entry?.photo ? (
           <img src={entry.photo} alt={name} className="nd-card__avatar-photo" />

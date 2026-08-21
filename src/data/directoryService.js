@@ -40,7 +40,8 @@ export async function saveDirectory(entries, meta = {}) {
       qualifications: e.qualifications || e.Qualifications || "",
       mobile_no: e["mobile no"] || e["Mobile No"] || e.mobile_no || e.contact || e.Contact || "",
       time: e.time || e.Time || e.timings || e.Timings || "",
-      address: e.address || e.Address || ""
+      address: e.address || e.Address || "",
+      photo: e.photo || e.Photo || ""
     }));
     
     const { error } = await supabase.from('doctors_directory').insert(dbEntries);
@@ -67,4 +68,15 @@ export async function saveDirectory(entries, meta = {}) {
   
   window.dispatchEvent(new CustomEvent("directory:updated"));
   return fullMeta;
+}
+
+export async function clearDirectory() {
+  try {
+    await supabase.from('doctors_directory').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    window.localStorage.removeItem(META_KEY);
+    window.dispatchEvent(new CustomEvent("directory:updated"));
+  } catch (err) {
+    console.error("Failed to clear directory from Supabase:", err);
+    throw err;
+  }
 }

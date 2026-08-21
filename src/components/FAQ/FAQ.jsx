@@ -75,7 +75,10 @@ export default function FAQModal({ onClose }) {
 
         {/* Modal Header */}
         <div className="faq-modal__head">
-          <img src="/MahalCare_Logo.png" alt="MahalCare Logo" style={{ height: '38px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '8px', marginBottom: '0.75rem', display: 'inline-block' }} />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '0.75rem' }}>
+            <img src="/mahal-al-shifa-logo.png" alt="Mahal al Shifa Logo" style={{ height: '38px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '8px', display: 'block' }} />
+            <h2 style={{ margin: 0, fontSize: '1.4rem', whiteSpace: 'nowrap' }}>Mahal Al Shifa</h2>
+          </div>
           <span className="eyebrow">
             <HelpCircle size={14} aria-hidden="true" /> Got Questions?
           </span>
@@ -172,7 +175,7 @@ export default function FAQModal({ onClose }) {
           </div>
           <div className="faq-contact-actions">
             <a
-              href="https://wa.me/917223861653?text=Hi%2C%20I%20have%20a%20question%20about%20MahalCare"
+              href="https://wa.me/917223861653?text=Hi%2C%20I%20have%20a%20question%20about%20Mahal al Shifa"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary btn-sm"

@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import "./MonthlyRoster.css";
 
 export default function MonthlyRoster({ onBookClick }) {
-  const { entries, specialties } = useRoster();
+  const { entries, specialties, meta } = useRoster();
 
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
@@ -78,7 +78,14 @@ export default function MonthlyRoster({ onBookClick }) {
           <div>
             <span className="eyebrow">The full picture</span>
             <h2 className="section-title">Monthly Roster</h2>
-            <p className="section-sub">Browse every doctor visit for the month — filter by specialty or search a name.</p>
+            <p className="section-sub">
+              Browse every doctor visit for the month — filter by specialty or search a name.
+              {meta?.uploadedAt && (
+                <span style={{ display: 'block', marginTop: '0.5rem', fontSize: '0.85rem', opacity: 0.7 }}>
+                  Last updated: {new Date(meta.uploadedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                </span>
+              )}
+            </p>
           </div>
 
           <div className="monthly-roster__toggle">

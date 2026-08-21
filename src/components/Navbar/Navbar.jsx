@@ -3,13 +3,14 @@ import { Sun, Moon, LogOut, Menu, X } from "lucide-react";
 import "./Navbar.css";
 
 const LINKS = [
-  { href: "#home", label: "Home" },
-  { href: "#next-day", label: "Find a Doctor" },
-  { href: "#monthly-roster", label: "Monthly Roster" },
-  { href: "#health-advice", label: "Health Advice" },
+  { href: "#home", label: "Home", view: "home" },
+  { href: "#directory", label: "Doctors Directory", view: "directory" },
+  { href: "#next-day", label: "Find a Doctor", view: "home" },
+  { href: "#monthly-roster", label: "Monthly Roster", view: "home" },
+  { href: "#health-advice", label: "Health Advice", view: "home" },
 ];
 
-export default function Navbar({ onLogout, onBookClick }) {
+export default function Navbar({ onLogout, onBookClick, currentView, onViewChange }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') === 'dark');
@@ -48,8 +49,23 @@ export default function Navbar({ onLogout, onBookClick }) {
     return () => observer.disconnect();
   }, []);
 
-  const handleLinkClick = (href) => {
-    setActiveLink(href);
+  const handleLinkClick = (e, link) => {
+    if (link.view === "directory") {
+      e.preventDefault();
+      onViewChange("directory");
+      setActiveLink(link.href);
+    } else {
+      if (currentView !== "home") {
+        onViewChange("home");
+      }
+      setActiveLink(link.href);
+      if (link.href !== "#home") {
+        setTimeout(() => {
+          const el = document.getElementById(link.href.replace('#', ''));
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
     setOpen(false);
   };
 
@@ -57,14 +73,14 @@ export default function Navbar({ onLogout, onBookClick }) {
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__inner">
         {/* Brand */}
-        <a href="#home" className="navbar__brand" onClick={() => handleLinkClick('#home')} aria-label="MahalCare Home">
+        <a href="#home" className="navbar__brand" onClick={(e) => handleLinkClick(e, LINKS[0])} aria-label="Mahal al Shifa Home">
           <img
-            src="/MahalCare_Logo.png"
-            alt="MahalCare Logo"
-            style={{ height: '36px', width: 'auto', objectFit: 'contain', display: 'block', borderRadius: '6px', backgroundColor: '#ffffff', padding: '2px 6px' }}
+            src="/mahal-al-shifa-logo.png"
+            alt="Mahal al Shifa Logo"
+            style={{ height: '42px', width: 'auto', objectFit: 'contain', display: 'block', backgroundColor: '#ffffff', padding: '6px 16px', borderRadius: '8px' }}
           />
-          <span className="navbar__wordmark">
-            <strong className="navbar__brand-text">MahalCare</strong>
+          <span className="navbar__wordmark" style={{ marginLeft: '12px' }}>
+            <strong className="navbar__brand-text" style={{ fontSize: '1.25rem', color: '#ffffff' }}>Mahal Al Shifa</strong>
           </span>
         </a>
 
@@ -75,7 +91,7 @@ export default function Navbar({ onLogout, onBookClick }) {
               key={link.href}
               href={link.href}
               className={activeLink === link.href ? 'navbar__link--active' : ''}
-              onClick={() => handleLinkClick(link.href)}
+              onClick={(e) => handleLinkClick(e, link)}
             >
               {link.label}
             </a>

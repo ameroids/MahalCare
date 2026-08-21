@@ -79,7 +79,7 @@ export default function Hero({ onBookClick }) {
               <span>No active roster file uploaded yet. Please upload a schedule in the Admin Panel.</span>
             ) : (
               <span>
-                Schedule verified and updated {meta?.uploadedAt ? new Date(meta.uploadedAt).toLocaleString() : "recently"}.
+                Schedule verified and updated {meta?.uploadedAt ? new Date(meta.uploadedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : "recently"}.
               </span>
             )}
           </motion.div>
@@ -98,7 +98,7 @@ export default function Hero({ onBookClick }) {
               <div className="hero__slip-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
                 <div>
                   <span className="hero__slip-label">TODAY'S DOCTOR</span>
-                  <strong className="hero__slip-hospital">MahalCare</strong>
+                  <strong className="hero__slip-hospital">Mahal al Shifa</strong>
                 </div>
                 {todayDoctor.photo ? (
                   <div

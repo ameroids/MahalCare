@@ -1,4 +1,4 @@
-# Mahal-us-Shifa Appointment System
+# Mahal al Shifa Appointment System
 
 A modern, responsive React web app that displays a monthly doctor
 appointment roster. The schedule is never hand-coded — an admin uploads

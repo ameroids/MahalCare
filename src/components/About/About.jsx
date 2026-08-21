@@ -36,7 +36,7 @@ export default function About() {
           <span className="eyebrow">About the system</span>
           <h2 className="section-title">Built to stay out of the way</h2>
           <p className="section-sub">
-            MahalCare Appointment System exists to answer one question quickly:
+            Mahal al Shifa Appointment System exists to answer one question quickly:
             which doctor is available, and when. The schedule is never hand-coded —
             it comes entirely from the file an admin uploads.
           </p>

@@ -51,6 +51,7 @@
   color: #ffffff;
   letter-spacing: 0.02em;
   text-transform: none;
+  white-space: nowrap;
 }
 
 /* --- Nav Links --- */
@@ -269,7 +270,7 @@
   }
   
   .navbar__brand img {
-    width: 32px;
     height: 32px;
+    width: auto;
   }
 }
