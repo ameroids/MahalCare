@@ -7,12 +7,14 @@ import NextDayCarousel from "./components/NextDayCarousel/NextDayCarousel.jsx";
 import MonthlyRoster from "./components/MonthlyRoster/MonthlyRoster.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import AdminUpload from "./components/AdminUpload/AdminUpload.jsx";
+import AdminDirectoryUpload from "./components/AdminDirectoryUpload/AdminDirectoryUpload.jsx";
 import Login from "./components/Login/Login.jsx";
 import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton.jsx";
 import HealthAdvice from "./components/HealthAdvice/HealthAdvice.jsx";
 import FAQModal from "./components/FAQ/FAQ.jsx";
 import BookingModal from "./components/BookingModal/BookingModal.jsx";
 import AmeroidsLoader from "./components/AmeroidsLoader/AmeroidsLoader.jsx";
+import DoctorsDirectory from "./components/DoctorsDirectory/DoctorsDirectory.jsx";
 
 export default function App() {
   const [auth, setAuth] = useState(() => {
@@ -31,6 +33,7 @@ export default function App() {
   const [showFAQ, setShowFAQ] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [bookingDoctor, setBookingDoctor] = useState(null);
+  const [currentView, setCurrentView] = useState('home');
 
   const handleOpenBooking = (doctor = null) => {
     setBookingDoctor(doctor || null);
@@ -70,18 +73,32 @@ export default function App() {
                 <div className="glass-card" style={{ padding: '1rem' }}>
                   <AdminUpload onDone={() => {}} />
                 </div>
+                <div className="glass-card" style={{ padding: '1rem' }}>
+                  <AdminDirectoryUpload onDone={() => {}} />
+                </div>
               </div>
             </div>
           </div>
         ) : (
           <>
-            <Navbar onLogout={() => setAuth(null)} onBookClick={handleOpenBooking} />
-            <main>
-              <Hero onBookClick={handleOpenBooking} />
-              <NextDayCarousel onBookClick={handleOpenBooking} />
-              <MonthlyRoster onBookClick={handleOpenBooking} />
-              <HealthAdvice />
-            </main>
+            <Navbar 
+              onLogout={() => setAuth(null)} 
+              onBookClick={handleOpenBooking} 
+              currentView={currentView}
+              onViewChange={setCurrentView}
+            />
+            {currentView === 'directory' ? (
+              <main style={{ paddingTop: '80px', minHeight: '80vh', backgroundColor: 'var(--color-bg)' }}>
+                <DoctorsDirectory onBookClick={handleOpenBooking} />
+              </main>
+            ) : (
+              <main>
+                <Hero onBookClick={handleOpenBooking} />
+                <NextDayCarousel onBookClick={handleOpenBooking} />
+                <MonthlyRoster onBookClick={handleOpenBooking} />
+                <HealthAdvice />
+              </main>
+            )}
             <Footer onOpenFAQ={() => setShowFAQ(true)} />
             {showFAQ && <FAQModal onClose={() => setShowFAQ(false)} />}
             {showBooking && <BookingModal initialDoctor={bookingDoctor} onClose={() => setShowBooking(false)} />}
