@@ -37,7 +37,7 @@ const FAQS = [
   {
     id: 6,
     question: "How can I contact WhatsApp Support or Emergency Helpdesk?",
-    answer: "For general inquiries or support, click the floating Enquiry button on the bottom right or WhatsApp Support in the footer to message +91 9244064277. For urgent medical emergencies, call +91 96308 52953.",
+    answer: "For general inquiries or support, click the floating Enquiry button on the bottom right or WhatsApp Support in the footer to message +91 9244064277. For urgent medical emergencies, call +91 77478 48953.",
     category: "Support"
   }
 ];
@@ -99,7 +99,7 @@ export default function FAQModal({ onClose }) {
               aria-label="Search FAQs"
             />
             {searchTerm && (
-              <button 
+              <button
                 onClick={() => setSearchTerm("")}
                 className="faq-search-clear"
                 aria-label="Clear search"
@@ -121,8 +121,8 @@ export default function FAQModal({ onClose }) {
             filteredFaqs.map((faq) => {
               const isOpen = openId === faq.id;
               return (
-                <div 
-                  key={faq.id} 
+                <div
+                  key={faq.id}
                   className={`faq-card ${isOpen ? "faq-card--open" : ""}`}
                 >
                   <button

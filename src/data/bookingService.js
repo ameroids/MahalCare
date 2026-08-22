@@ -8,7 +8,7 @@ export function generateDailyToken(date, doctorName) {
   // Sanitize the doctor name for the key
   const safeName = (doctorName || "Unknown").replace(/[^a-zA-Z0-9]/g, "_");
   const storageKey = `mahala_token_${date}_${safeName}`;
-  
+
   let count = parseInt(localStorage.getItem(storageKey) || "0", 10);
   count += 1;
   localStorage.setItem(storageKey, count.toString());
