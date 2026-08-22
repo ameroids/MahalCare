@@ -5,37 +5,36 @@ const BookingContext = createContext(null);
 
 export function BookingProvider({ children }) {
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const refreshBookings = useCallback(() => {
-    setBookings(loadBookings());
+  const refreshBookings = useCallback(async () => {
+    setLoading(true);
+    const data = await loadBookings();
+    setBookings(data);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
     refreshBookings();
-    window.addEventListener("storage", refreshBookings);
-    return () => {
-      window.removeEventListener("storage", refreshBookings);
-    };
+    // In a production app, you might use Supabase real-time subscriptions here.
+    // For now, we fetch on mount.
   }, [refreshBookings]);
 
   const bookAppointment = useCallback(async (bookingDetails) => {
-    // In a real app, this would be an API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const { updated, newBooking } = saveBooking(bookingDetails);
-        setBookings(updated);
-        resolve({ ok: true, booking: newBooking });
-      }, 800); // simulate network delay
-    });
-  }, []);
+    const result = await saveBooking(bookingDetails);
+    // Refresh to get the latest state from Supabase
+    await refreshBookings();
+    return result;
+  }, [refreshBookings]);
 
-  const clearAllBookings = useCallback(() => {
-    clearBookings();
-    refreshBookings();
+  const clearAllBookings = useCallback(async () => {
+    await clearBookings();
+    await refreshBookings();
   }, [refreshBookings]);
 
   const value = {
     bookings,
+    loading,
     bookAppointment,
     clearAllBookings,
     refreshBookings

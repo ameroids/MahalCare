@@ -1,62 +1,101 @@
-const BOOKINGS_KEY = "shifa_bookings";
+import { supabase } from "../supabaseClient.js";
 
 /**
- * Generate a sequential token starting at 001.
+ * Generate a sequential token starting at 001 using Supabase count.
  * Now creates a unique counter per doctor per date.
  */
-export function generateDailyToken(date, doctorName) {
-  // Sanitize the doctor name for the key
-  const safeName = (doctorName || "Unknown").replace(/[^a-zA-Z0-9]/g, "_");
-  const storageKey = `mahala_token_${date}_${safeName}`;
+export async function generateDailyToken(date, doctorName) {
+  try {
+    const { count, error } = await supabase
+      .from('bookings')
+      .select('*', { count: 'exact', head: true })
+      .eq('date', date)
+      .eq('doctor_name', doctorName);
 
-  let count = parseInt(localStorage.getItem(storageKey) || "0", 10);
-  count += 1;
-  localStorage.setItem(storageKey, count.toString());
-  return String(count).padStart(3, "0");
+    if (error) {
+      console.error("Supabase count error:", error);
+      throw error;
+    }
+
+    const nextCount = (count || 0) + 1;
+    return String(nextCount).padStart(3, "0");
+  } catch (e) {
+    console.error("Failed to generate token from Supabase", e);
+    // Fallback if Supabase fails (e.g. offline)
+    return "001";
+  }
 }
 
-export function loadBookings() {
+export async function loadBookings() {
   try {
-    const raw = localStorage.getItem(BOOKINGS_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    
+    // Map snake_case to camelCase for the frontend
+    return (data || []).map(b => ({
+      ...b,
+      doctorName: b.doctor_name
+    }));
   } catch (e) {
-    console.error("Failed to load bookings from local storage", e);
+    console.error("Failed to load bookings from Supabase", e);
     return [];
   }
 }
 
-export function saveBooking(booking) {
+export async function saveBooking(booking) {
   try {
-    const current = loadBookings();
-    const token = generateDailyToken(booking.date, booking.doctorName);
+    const token = await generateDailyToken(booking.date, booking.doctorName);
+    
     const newBooking = {
-      ...booking,
-      id: crypto.randomUUID(),
       token,
-      createdAt: new Date().toISOString(),
+      name: booking.name,
+      phone: booking.phone,
+      its: booking.its,
+      reason: booking.reason,
+      doctor_name: booking.doctorName,
+      specialty: booking.specialty,
+      date: booking.date,
+      timing: booking.timing,
     };
-    const updated = [...current, newBooking];
-    localStorage.setItem(BOOKINGS_KEY, JSON.stringify(updated));
-    return { updated, newBooking };
+
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert([newBooking])
+      .select();
+
+    if (error) throw error;
+
+    const savedRecord = data[0];
+    
+    // Map back to camelCase
+    return {
+      ok: true,
+      newBooking: {
+        ...savedRecord,
+        doctorName: savedRecord.doctor_name
+      }
+    };
   } catch (e) {
-    console.error("Failed to save booking to local storage", e);
+    console.error("Failed to save booking to Supabase", e);
     throw new Error("Unable to save booking");
   }
 }
 
-export function clearBookings() {
+export async function clearBookings() {
   try {
-    localStorage.removeItem(BOOKINGS_KEY);
-    // Also remove any token counters
-    const keysToRemove = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && (key.startsWith("mahala_token_") || key === "mahala_global_token_counter")) {
-        keysToRemove.push(key);
-      }
-    }
-    keysToRemove.forEach(key => localStorage.removeItem(key));
+    // Delete all records. Note: Supabase requires a filter for delete unless RLS or specific configuration allows it.
+    // Using a filter that is always true (e.g. id is not null)
+    const { error } = await supabase
+      .from('bookings')
+      .delete()
+      .not('id', 'is', null);
+      
+    if (error) throw error;
   } catch (e) {
-    console.error("Failed to clear bookings from local storage", e);
+    console.error("Failed to clear bookings from Supabase", e);
   }
 }
