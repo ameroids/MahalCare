@@ -7,7 +7,7 @@ const FAQS = [
   {
     id: 1,
     question: "How do I book an appointment with a doctor?",
-    answer: "Click the 'Book Appointment' or 'Book' button on any doctor card across Today's Doctor, Tomorrow's Doctor, or the Monthly Roster. Fill in your name, 8-digit ITS number, phone, and reason. Your request will be automatically formatted with a daily token and sent to our WhatsApp desk (+91 7223861653).",
+    answer: "Click the 'Book Appointment' or 'Book' button on any doctor card across Today's Doctor, Tomorrow's Doctor, or the Monthly Roster. Fill in your name, 8-digit ITS number, phone, and reason. Your request will be automatically formatted with a daily token and sent to our WhatsApp desk (+91 9244064277).",
     category: "Booking"
   },
   {
@@ -37,7 +37,7 @@ const FAQS = [
   {
     id: 6,
     question: "How can I contact WhatsApp Support or Emergency Helpdesk?",
-    answer: "For general inquiries or support, click the floating Enquiry button on the bottom right or WhatsApp Support in the footer to message +91 7223861653. For urgent medical emergencies, call +91 77478 48953.",
+    answer: "For general inquiries or support, click the floating Enquiry button on the bottom right or WhatsApp Support in the footer to message +91 9244064277. For urgent medical emergencies, call +91 96308 52953.",
     category: "Support"
   }
 ];
@@ -175,7 +175,7 @@ export default function FAQModal({ onClose }) {
           </div>
           <div className="faq-contact-actions">
             <a
-              href="https://wa.me/917223861653?text=Hi%2C%20I%20have%20a%20question%20about%20Mahal al Shifa"
+              href="https://wa.me/919244064277?text=Hi%2C%20I%20have%20a%20question%20about%20Mahal al Shifa"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary btn-sm"

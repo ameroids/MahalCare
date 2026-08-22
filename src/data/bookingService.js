@@ -2,10 +2,13 @@ const BOOKINGS_KEY = "shifa_bookings";
 
 /**
  * Generate a sequential token starting at 001.
- * Using a global counter so it increments consistently during testing.
+ * Now creates a unique counter per doctor per date.
  */
-export function generateDailyToken(date) {
-  const storageKey = `mahala_global_token_counter`;
+export function generateDailyToken(date, doctorName) {
+  // Sanitize the doctor name for the key
+  const safeName = (doctorName || "Unknown").replace(/[^a-zA-Z0-9]/g, "_");
+  const storageKey = `mahala_token_${date}_${safeName}`;
+  
   let count = parseInt(localStorage.getItem(storageKey) || "0", 10);
   count += 1;
   localStorage.setItem(storageKey, count.toString());
@@ -25,7 +28,7 @@ export function loadBookings() {
 export function saveBooking(booking) {
   try {
     const current = loadBookings();
-    const token = generateDailyToken(booking.date);
+    const token = generateDailyToken(booking.date, booking.doctorName);
     const newBooking = {
       ...booking,
       id: crypto.randomUUID(),
@@ -44,6 +47,15 @@ export function saveBooking(booking) {
 export function clearBookings() {
   try {
     localStorage.removeItem(BOOKINGS_KEY);
+    // Also remove any token counters
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && (key.startsWith("mahala_token_") || key === "mahala_global_token_counter")) {
+        keysToRemove.push(key);
+      }
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key));
   } catch (e) {
     console.error("Failed to clear bookings from local storage", e);
   }

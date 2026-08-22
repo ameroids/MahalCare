@@ -58,9 +58,13 @@ export default function NextDayDoctorCard({ entry, onViewDetails, onBook }) {
           <span className="nd-card__label">Time</span>
           <span className="nd-card__value nd-card__value--teal">{time}</span>
         </div>
-        <div className="nd-card__row nd-card__row--last">
+        <div className="nd-card__row">
           <span className="nd-card__label">Date</span>
           <span className="nd-card__value nd-card__value--bold">{formatDate(date)}</span>
+        </div>
+        <div className="nd-card__row nd-card__row--last">
+          <span className="nd-card__label">Location</span>
+          <span className="nd-card__value">Indore Saifee Nagar</span>
         </div>
       </div>
 
@@ -73,15 +77,6 @@ export default function NextDayDoctorCard({ entry, onViewDetails, onBook }) {
         >
           Details →
         </button>
-        {onBook && (
-          <button
-            className="nd-card__btn-book"
-            onClick={(e) => { e.stopPropagation(); onBook(entry); }}
-            aria-label={`Book appointment with ${name}`}
-          >
-            <CalendarDays size={14} /> Book
-          </button>
-        )}
       </div>
     </article>
   );

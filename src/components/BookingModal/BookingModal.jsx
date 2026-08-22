@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { X, Calendar, Clock, User, Phone, FileText, Send, CheckCircle2, Hash, AlertCircle } from "lucide-react";
 import { useRoster } from "../../context/RosterContext.jsx";
+import { useBookings } from "../../context/BookingContext.jsx";
 import { formatLongDate } from "../../utils/dateUtils.js";
-import { generateDailyToken } from "../../data/bookingService.js";
 import "./BookingModal.css";
 
-const WHATSAPP_NUMBER = "917223861653"; // Umoor Sehhat / Mahal al Shifa desk number
+const WHATSAPP_NUMBER = "919244064277"; // Umoor Sehhat / Mahal al Shifa desk number
 
 export default function BookingModal({ initialDoctor = null, onClose }) {
   const { entries } = useRoster();
+  const { bookAppointment } = useBookings();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -34,16 +36,28 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
   // Selected doctor record if picked from list
   const activeDoctor = entries?.find((e) => e.id === formData.selectedDoctorId) || initialDoctor;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Generate daily token starting with 001
-    const token = generateDailyToken(activeDoctor?.date);
-    setSubmittedToken(token);
+    setIsSubmitting(true);
 
     const docName = activeDoctor ? activeDoctor.doctorName : (formData.customDoctor || "General Consultation");
     const specialty = activeDoctor?.specialty || "Medical Visit";
     const dateTimeStr = activeDoctor ? `${formatLongDate(activeDoctor.date)} (${activeDoctor.timing})` : "As scheduled";
+
+    const result = await bookAppointment({
+      name: formData.name,
+      its: formData.its,
+      phone: formData.phone,
+      reason: formData.reason,
+      doctorName: docName,
+      specialty: specialty,
+      date: activeDoctor?.date || "",
+      timing: activeDoctor?.timing || ""
+    });
+
+    const token = result.booking.token;
+    setSubmittedToken(token);
+    setIsSubmitting(false);
 
     // Format WhatsApp message
     const message = 
@@ -173,8 +187,8 @@ Please confirm my appointment. Thank you!`;
                 <span><strong>Important:</strong> Your appointment will only be booked if you press <strong>Send</strong> after WhatsApp opens!</span>
               </div>
 
-              <button type="submit" className="btn btn-primary booking-modal__submit">
-                <Send size={18} /> Submit & Forward to WhatsApp
+              <button type="submit" className="btn btn-primary booking-modal__submit" disabled={isSubmitting}>
+                <Send size={18} /> {isSubmitting ? "Generating Token..." : "Submit & Forward to WhatsApp"}
               </button>
             </form>
           </>

@@ -8,6 +8,7 @@ import MonthlyRoster from "./components/MonthlyRoster/MonthlyRoster.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import AdminUpload from "./components/AdminUpload/AdminUpload.jsx";
 import AdminDirectoryUpload from "./components/AdminDirectoryUpload/AdminDirectoryUpload.jsx";
+import AdminBookings from "./components/AdminBookings/AdminBookings.jsx";
 
 import Login from "./components/Login/Login.jsx";
 import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton.jsx";
@@ -98,15 +99,20 @@ export default function App() {
                 >
                   Doctors Directory Upload
                 </button>
+                <button 
+                  className={`btn ${adminView === 'bookings' ? 'btn-primary' : 'btn-secondary'}`}
+                  style={{ flex: '1 1 200px' }}
+                  onClick={() => setAdminView('bookings')}
+                >
+                  Booking Records
+                </button>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div className="glass-card" style={{ padding: '1rem' }}>
-                  {adminView === 'roster' ? (
-                    <AdminUpload onDone={() => {}} />
-                  ) : (
-                    <AdminDirectoryUpload onDone={() => {}} />
-                  )}
+                  {adminView === 'roster' && <AdminUpload onDone={() => {}} />}
+                  {adminView === 'directory' && <AdminDirectoryUpload onDone={() => {}} />}
+                  {adminView === 'bookings' && <AdminBookings />}
                 </div>
               </div>
             </div>

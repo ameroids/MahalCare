@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRoster } from "../../context/RosterContext.jsx";
-import { CalendarDays, ShieldCheck, ZoomIn } from "lucide-react";
+import { CalendarDays, ShieldCheck, ZoomIn, MapPin } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { getTodayISO, formatShortDate } from "../../utils/dateUtils.js";
 import ImageZoomModal from "../ImageZoomModal/ImageZoomModal.jsx";
@@ -67,11 +67,7 @@ export default function Hero({ onBookClick }) {
             and book appointments with confidence—all from your phone or computer.
           </motion.p>
 
-          <motion.div className="hero__cta" variants={fadeUp}>
-            <button onClick={() => onBookClick && onBookClick(todayDoctor)} className="btn hero__cta-primary" aria-label="Book an Appointment">
-              <CalendarDays size={18} aria-hidden="true" /> Book Appointment
-            </button>
-          </motion.div>
+
 
           <motion.div className="hero__status" variants={fadeUp} role="status" aria-live="polite">
             <span className="hero__pulse" aria-hidden="true" />
@@ -138,29 +134,11 @@ export default function Hero({ onBookClick }) {
                   <span className="hero__slip-key">Date</span>
                   <span className="hero__slip-value hero__slip-value--mono">{formatShortDate(todayDoctor.date)}, {todayDoctor.date.split('-')[0]}</span>
                 </div>
-                <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                  <button
-                    onClick={() => onBookClick && onBookClick(todayDoctor)}
-                    style={{
-                      width: '100%',
-                      padding: '8px 12px',
-                      borderRadius: '8px',
-                      background: 'rgba(255, 255, 255, 0.2)',
-                      color: '#ffffff',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      fontWeight: '600',
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '6px',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    <CalendarDays size={14} /> Book Today's Doctor
-                  </button>
+                <div className="hero__slip-row">
+                  <span className="hero__slip-key">Location</span>
+                  <span className="hero__slip-value">Indore Saifee Nagar</span>
                 </div>
+
               </div>
             </motion.div>
           </div>

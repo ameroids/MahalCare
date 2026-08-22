@@ -11,14 +11,14 @@ export default function WhatsAppButton() {
 
   const handleProceedCall = () => {
     setShowWarning(false);
-    window.location.href = "tel:+917747848953";
+    window.location.href = "tel:+919630852953";
   };
 
   return (
     <>
       <div className="floating-buttons-container">
         <a 
-          href="tel:+917747848953" 
+          href="tel:+919630852953" 
           className="float-btn emergency-btn" 
           aria-label="Emergency Contact"
           onClick={handleEmergencyClick}
@@ -30,7 +30,7 @@ export default function WhatsAppButton() {
         </a>
 
         <a 
-          href="https://wa.me/917223861653" 
+          href="https://wa.me/919244064277" 
           className="float-btn whatsapp-btn" 
           target="_blank" 
           rel="noopener noreferrer"

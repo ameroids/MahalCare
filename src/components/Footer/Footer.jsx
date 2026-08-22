@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import "./Footer.css";
 
 export default function Footer({ onOpenFAQ }) {
@@ -46,8 +46,8 @@ export default function Footer({ onOpenFAQ }) {
                 FAQ
               </a>
             </li>
-            <li><a href="https://wa.me/917223861653" target="_blank" rel="noopener noreferrer">WhatsApp Support</a></li>
-            <li><a href="tel:+917747848953">Emergency Helpline</a></li>
+            <li><a href="https://wa.me/919244064277" target="_blank" rel="noopener noreferrer">WhatsApp Support</a></li>
+            <li><a href="tel:+919630852953">Emergency Helpline</a></li>
             <li><a href="#monthly-roster">Schedule Roster</a></li>
           </ul>
         </div>
@@ -57,12 +57,12 @@ export default function Footer({ onOpenFAQ }) {
           <h4 className="footer__col-title">Contact</h4>
           <ul className="footer__contact-list">
             <li>
-              <Phone size={16} className="footer__contact-icon" />
-              <a href="tel:+917747848953">+91 77478 48953</a>
+              <MessageCircle size={16} className="footer__contact-icon" />
+              <a href="https://wa.me/919244064277" target="_blank" rel="noopener noreferrer">+91 92440 64277</a>
             </li>
             <li>
               <Mail size={16} className="footer__contact-icon" />
-              <a href="mailto:contact@ameroids.in">contact@ameroids.in</a>
+              <a href="mailto:mahalshifaindore@gmail.com">mahalshifaindore@gmail.com</a>
             </li>
             <li>
               <MapPin size={16} className="footer__contact-icon" />
