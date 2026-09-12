@@ -103,7 +103,7 @@ export default function DoctorsDirectory({ onBookClick }) {
         <div className="dir-hero-content-wrapper">
           <div className="dir-glass-panel">
             <h2 className="dir-hero-subtitle">Mumineen Indore</h2>
-            <h1 className="dir-hero-title">Doctors Directory</h1>
+            <h1 className="dir-hero-title">Find my Doctor</h1>
             <p className="dir-hero-desc">Find top specialists, view clinic locations, and check timings instantly.</p>
             
             <div className="dir-search-bar">

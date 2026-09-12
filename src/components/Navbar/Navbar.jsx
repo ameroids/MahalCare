@@ -4,9 +4,9 @@ import "./Navbar.css";
 
 const LINKS = [
   { href: "#home", label: "Home", view: "home" },
-  { href: "#directory", label: "Doctors Directory", view: "directory" },
+  { href: "#directory", label: "Find my Doctor", view: "directory" },
   { href: "#my-appointments", label: "My Appointments", view: "my-appointments" },
-  { href: "#next-day", label: "Find a Doctor", view: "home" },
+  { href: "#next-day", label: "Tomorrow's Doctor", view: "home" },
   { href: "#monthly-roster", label: "Monthly Roster", view: "home" },
   { href: "#health-advice", label: "Health Advice", view: "home" },
 ];

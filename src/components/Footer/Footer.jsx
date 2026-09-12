@@ -25,7 +25,7 @@ export default function Footer({ onOpenFAQ }) {
           <h4 className="footer__col-title">Quick Links</h4>
           <ul className="footer__list">
             <li><a href="#home">Home</a></li>
-            <li><a href="#next-day">Find a Doctor</a></li>
+            <li><a href="#next-day">Tomorrow's Doctor</a></li>
             <li><a href="#monthly-roster">Monthly Roster</a></li>
             <li><a href="#health-advice">Health Advice</a></li>
           </ul>

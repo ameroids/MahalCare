@@ -286,7 +286,7 @@ export default function AdminDirectoryUpload({ onDone }) {
       >
         <UploadCloud size={48} className="admin-upload__dropzone-icon" />
         <p><strong>Click to upload</strong> or drag and drop</p>
-        <span>.xlsx or .csv — for the Doctors Directory</span>
+        <span>.xlsx or .csv — for Find my Doctor</span>
         <input
           ref={inputRef}
           type="file"

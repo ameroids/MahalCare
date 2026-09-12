@@ -97,7 +97,7 @@ export default function App() {
                   style={{ flex: '1 1 200px' }}
                   onClick={() => setAdminView('directory')}
                 >
-                  Doctors Directory Upload
+                  Find my Doctor Upload
                 </button>
                 <button 
                   className={`btn ${adminView === 'bookings' ? 'btn-primary' : 'btn-secondary'}`}
