@@ -140,6 +140,10 @@
 }
 
 @media (max-width: 768px) {
+  .admin-bookings {
+    padding: var(--space-3);
+  }
+
   .admin-bookings__actions {
     flex-wrap: wrap;
   }
@@ -156,7 +160,7 @@
   .admin-bookings__date-picker {
     flex-direction: column;
     align-items: flex-start;
-    padding: var(--space-4);
+    padding: var(--space-3);
     box-sizing: border-box;
     width: 100%;
   }
