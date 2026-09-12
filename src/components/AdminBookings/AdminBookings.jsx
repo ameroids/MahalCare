@@ -1,20 +1,26 @@
-import React from 'react';
-import { Download, Trash2, CalendarX2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Trash2, CalendarX2, CalendarDays, FileSpreadsheet } from 'lucide-react';
 import { useBookings } from '../../context/BookingContext.jsx';
-import { formatLongDate } from '../../utils/dateUtils.js';
+import { formatLongDate, getTodayISO } from '../../utils/dateUtils.js';
 import './AdminBookings.css';
 
 export default function AdminBookings() {
-  const { bookings, clearAllBookings } = useBookings();
+  const { bookings, clearAllBookings, updateStatus } = useBookings();
+  const [viewMode, setViewMode] = useState('daywise'); // 'daywise' | 'all'
+  const [selectedDate, setSelectedDate] = useState(getTodayISO());
+
+  const displayedBookings = viewMode === 'daywise' 
+    ? bookings.filter(b => b.date === selectedDate)
+    : bookings;
 
   const handleDownloadCSV = () => {
-    if (bookings.length === 0) return;
+    if (displayedBookings.length === 0) return;
 
     // Headers
-    const headers = ['Token', 'Booking ID', 'Patient Name', 'ITS Number', 'Phone', 'Reason', 'Doctor', 'Specialty', 'Appointment Date', 'Timing', 'Booked At'];
+    const headers = ['Token', 'Booking ID', 'Patient Name', 'ITS Number', 'Phone', 'Reason', 'Doctor', 'Specialty', 'Appointment Date', 'Timing', 'Status', 'Booked At'];
     
     // Rows
-    const rows = bookings.map(b => [
+    const rows = displayedBookings.map(b => [
       b.token || 'N/A',
       b.id,
       `"${b.name}"`,
@@ -25,6 +31,7 @@ export default function AdminBookings() {
       `"${b.specialty}"`,
       b.date,
       `"${b.timing}"`,
+      `"${b.status || 'Pending'}"`,
       new Date(b.createdAt).toLocaleString()
     ]);
 
@@ -34,7 +41,12 @@ export default function AdminBookings() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `bookings_record_${new Date().toISOString().split('T')[0]}.csv`);
+    
+    const filename = viewMode === 'daywise' 
+      ? `bookings_${selectedDate}.csv` 
+      : `all_bookings_record_${new Date().toISOString().split('T')[0]}.csv`;
+      
+    link.setAttribute("download", filename);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -54,23 +66,50 @@ export default function AdminBookings() {
           <p>View and download patient appointments.</p>
         </div>
         <div className="admin-bookings__actions">
-          {bookings.length > 0 && (
-            <>
-              <button className="btn btn-secondary btn-sm" onClick={handleClear}>
-                <Trash2 size={16} /> Clear All
-              </button>
-              <button className="btn btn-primary btn-sm" onClick={handleDownloadCSV}>
-                <Download size={16} /> Download CSV
-              </button>
-            </>
+          {bookings.length > 0 && viewMode === 'all' && (
+            <button className="btn btn-secondary btn-sm" onClick={handleClear}>
+              <Trash2 size={16} /> Clear All
+            </button>
+          )}
+          {displayedBookings.length > 0 && (
+            <button className="btn btn-primary btn-sm" onClick={handleDownloadCSV}>
+              <Download size={16} /> Download CSV
+            </button>
           )}
         </div>
       </header>
 
-      {bookings.length === 0 ? (
+      <div className="admin-bookings__tabs">
+        <button 
+          className={`btn ${viewMode === 'daywise' ? 'btn-primary' : 'btn-ghost'}`}
+          onClick={() => setViewMode('daywise')}
+        >
+          <CalendarDays size={16} /> Daywise Records
+        </button>
+        <button 
+          className={`btn ${viewMode === 'all' ? 'btn-primary' : 'btn-ghost'}`}
+          onClick={() => setViewMode('all')}
+        >
+          <FileSpreadsheet size={16} /> All Records (Monthly)
+        </button>
+      </div>
+
+      {viewMode === 'daywise' && (
+        <div className="admin-bookings__date-picker">
+          <label htmlFor="daywise-date">Select Date:</label>
+          <input 
+            id="daywise-date"
+            type="date" 
+            value={selectedDate} 
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
+        </div>
+      )}
+
+      {displayedBookings.length === 0 ? (
         <div className="admin-bookings__empty">
           <CalendarX2 size={48} className="text-teal-faint" />
-          <p>No bookings have been made yet.</p>
+          <p>{viewMode === 'daywise' ? `No bookings found for ${formatLongDate(selectedDate)}.` : 'No bookings have been made yet.'}</p>
         </div>
       ) : (
         <div className="admin-bookings__table-wrap">
@@ -82,29 +121,43 @@ export default function AdminBookings() {
                 <th>ITS Number</th>
                 <th>Doctor</th>
                 <th>Appointment Date</th>
+                <th>Status</th>
                 <th>Booked At</th>
               </tr>
             </thead>
             <tbody>
-              {bookings.map(b => (
+              {displayedBookings.map(b => (
                 <tr key={b.id}>
-                  <td>
+                  <td data-label="Token">
                     <strong className="admin-bookings__token">{b.token || '—'}</strong>
                   </td>
-                  <td>
+                  <td data-label="Patient">
                     <strong>{b.name}</strong>
                     <div className="text-xs text-muted">{b.phone}</div>
                   </td>
-                  <td>{b.its}</td>
-                  <td>
+                  <td data-label="ITS Number">{b.its}</td>
+                  <td data-label="Doctor">
                     <strong>{b.doctorName}</strong>
                     <div className="text-xs text-muted">{b.specialty}</div>
                   </td>
-                  <td>
+                  <td data-label="Appointment Date">
                     {formatLongDate(b.date)}
                     <div className="text-xs text-muted">{b.timing}</div>
                   </td>
-                  <td className="text-xs text-muted">
+                  <td data-label="Status">
+                    <select 
+                      value={b.status || 'Pending'} 
+                      onChange={(e) => updateStatus(b.id, e.target.value)}
+                      className="admin-bookings__status-select"
+                      style={{ padding: '4px', borderRadius: '4px', border: '1px solid #ccc' }}
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Confirmed">Confirmed</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
+                  </td>
+                  <td data-label="Booked At" className="text-xs text-muted">
                     {new Date(b.createdAt).toLocaleString()}
                   </td>
                 </tr>

@@ -204,11 +204,11 @@ export default function AdminUpload({ onDone }) {
       >
         <UploadCloud size={48} className="admin-upload__dropzone-icon" aria-hidden="true" />
         <p><strong>Click to upload</strong> or drag and drop</p>
-        <span>.xlsx, .xls, or .json — one row per doctor appointment</span>
+        <span>.xlsx, .xls, .csv, or .json — one row per doctor appointment</span>
         <input
           ref={inputRef}
           type="file"
-          accept=".xlsx,.xls,.json,application/json"
+          accept=".xlsx,.xls,.csv,.json,application/json,text/csv"
           className="visually-hidden"
           onClick={(e) => { e.target.value = null; }}
           onChange={(e) => handleFile(e.target.files?.[0])}

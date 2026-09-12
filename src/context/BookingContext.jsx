@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { loadBookings, saveBooking, clearBookings } from "../data/bookingService.js";
+import { loadBookings, saveBooking, clearBookings, updateBookingStatus } from "../data/bookingService.js";
 
 const BookingContext = createContext(null);
 
@@ -32,12 +32,19 @@ export function BookingProvider({ children }) {
     await refreshBookings();
   }, [refreshBookings]);
 
+  const updateStatus = useCallback(async (id, status) => {
+    const result = await updateBookingStatus(id, status);
+    await refreshBookings();
+    return result;
+  }, [refreshBookings]);
+
   const value = {
     bookings,
     loading,
     bookAppointment,
     clearAllBookings,
-    refreshBookings
+    refreshBookings,
+    updateStatus
   };
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

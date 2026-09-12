@@ -139,6 +139,31 @@ export default function Hero({ onBookClick }) {
                   <span className="hero__slip-value">Indore Saifee Nagar</span>
                 </div>
               </div>
+              <div style={{ padding: '0 1.5rem 1.5rem', marginTop: '1rem', width: '100%', boxSizing: 'border-box' }}>
+                <button
+                  onClick={() => onBookClick && onBookClick(todayDoctor)}
+                  disabled={new Date().getHours() >= 8}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    borderRadius: '8px',
+                    background: new Date().getHours() >= 8 ? '#cbd5e1' : '#0f766e',
+                    color: new Date().getHours() >= 8 ? '#64748b' : '#fff',
+                    border: 'none',
+                    fontWeight: 'bold',
+                    cursor: new Date().getHours() >= 8 ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    transition: 'background 0.2s'
+                  }}
+                  aria-label={`Book appointment for today's doctor`}
+                >
+                  <CalendarDays size={16} />
+                  {new Date().getHours() >= 8 ? "Booking Closed (After 8:00 AM)" : "Book Appointment"}
+                </button>
+              </div>
             </motion.div>
           </div>
         ) : (

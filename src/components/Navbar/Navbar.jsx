@@ -5,6 +5,7 @@ import "./Navbar.css";
 const LINKS = [
   { href: "#home", label: "Home", view: "home" },
   { href: "#directory", label: "Doctors Directory", view: "directory" },
+  { href: "#my-appointments", label: "My Appointments", view: "my-appointments" },
   { href: "#next-day", label: "Find a Doctor", view: "home" },
   { href: "#monthly-roster", label: "Monthly Roster", view: "home" },
   { href: "#health-advice", label: "Health Advice", view: "home" },
@@ -50,9 +51,9 @@ export default function Navbar({ onLogout, onBookClick, currentView, onViewChang
   }, []);
 
   const handleLinkClick = (e, link) => {
-    if (link.view === "directory") {
+    if (link.view === "directory" || link.view === "my-appointments") {
       e.preventDefault();
-      onViewChange("directory");
+      onViewChange(link.view);
       setActiveLink(link.href);
     } else {
       if (currentView !== "home") {

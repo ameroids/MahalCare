@@ -17,7 +17,7 @@ import FAQModal from "./components/FAQ/FAQ.jsx";
 import BookingModal from "./components/BookingModal/BookingModal.jsx";
 import AmeroidsLoader from "./components/AmeroidsLoader/AmeroidsLoader.jsx";
 import DoctorsDirectory from "./components/DoctorsDirectory/DoctorsDirectory.jsx";
-
+import MyAppointments from "./components/MyAppointments/MyAppointments.jsx";
 
 export default function App() {
   const [auth, setAuth] = useState(() => {
@@ -128,6 +128,10 @@ export default function App() {
             {currentView === 'directory' ? (
               <main style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
                 <DoctorsDirectory onBookClick={handleOpenBooking} />
+              </main>
+            ) : currentView === 'my-appointments' ? (
+              <main style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
+                <MyAppointments auth={auth} />
               </main>
             ) : (
               <main>

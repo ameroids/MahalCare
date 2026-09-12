@@ -1,63 +1,94 @@
-import React from 'react';
-import { CalendarCheck, Clock, Stethoscope, Trash2 } from 'lucide-react';
-import { useBookings } from '../../context/BookingContext.jsx';
+import React, { useEffect, useState } from 'react';
+import { CalendarX2, CalendarCheck, Clock, CheckCircle2, XCircle } from 'lucide-react';
+import { loadUserBookings } from '../../data/bookingService.js';
 import { formatLongDate } from '../../utils/dateUtils.js';
 import './MyAppointments.css';
 
-export default function MyAppointments({ userIts }) {
-  const { bookings } = useBookings();
-  
-  // Only show bookings that belong to the currently logged-in user
-  const myBookings = bookings.filter((b) => b.its === userIts);
-  return (
-    <section id="my-appointments" className="my-appointments" aria-labelledby="my-appointments-heading">
-      <div className="container">
-        <header className="my-appointments__header">
-          <span className="eyebrow">Your Schedule</span>
-          <h2 id="my-appointments-heading">My Appointments</h2>
-          <p>Track all your upcoming consultations in one place.</p>
-        </header>
+export default function MyAppointments({ auth }) {
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-        {myBookings.length === 0 ? (
-          <div className="my-appointments__empty glass-card">
-            <CalendarCheck size={48} aria-hidden="true" />
-            <h3>No Appointments Yet</h3>
-            <p>Browse available doctors and book your first appointment to see it here.</p>
-          </div>
-        ) : (
-          <div className="my-appointments__grid">
-            {myBookings.map((b) => (
-              <article key={b.id} className="my-appointments__card glass-card">
-                <div className="my-appointments__card-badge">
-                  <span className="badge badge-teal">{b.specialty}</span>
-                  {b.token && <span className="my-appointments__token">{b.token}</span>}
-                </div>
-                <div className="my-appointments__card-body">
-                  <h3 className="my-appointments__doctor">{b.doctorName}</h3>
-                  <div className="my-appointments__meta">
-                    <div className="my-appointments__meta-item">
-                      <CalendarCheck size={14} aria-hidden="true" />
-                      <span>{formatLongDate(b.date)}</span>
-                    </div>
-                    <div className="my-appointments__meta-item">
-                      <Clock size={14} aria-hidden="true" />
-                      <span>{b.timing}</span>
-                    </div>
-                    <div className="my-appointments__meta-item">
-                      <Stethoscope size={14} aria-hidden="true" />
-                      <span>{b.reason}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="my-appointments__card-footer">
-                  <span className="my-appointments__patient">Patient: {b.name}</span>
-                  <span className="my-appointments__booked-at">Booked {new Date(b.createdAt).toLocaleDateString()}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
+  useEffect(() => {
+    async function fetchBookings() {
+      if (auth && auth.its) {
+        const userBookings = await loadUserBookings(auth.its);
+        setAppointments(userBookings);
+      }
+      setLoading(false);
+    }
+    fetchBookings();
+  }, [auth]);
+
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case 'Confirmed':
+        return <span className="status-badge status-confirmed"><CalendarCheck size={14} /> Confirmed</span>;
+      case 'Completed':
+        return <span className="status-badge status-completed"><CheckCircle2 size={14} /> Completed</span>;
+      case 'Cancelled':
+        return <span className="status-badge status-cancelled"><XCircle size={14} /> Cancelled</span>;
+      case 'Pending':
+      default:
+        return <span className="status-badge status-pending"><Clock size={14} /> Pending</span>;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="my-appointments container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>
+        <p>Loading your appointments...</p>
       </div>
+    );
+  }
+
+  return (
+    <section className="my-appointments container" style={{ padding: '4rem 1rem', minHeight: '80vh' }}>
+      <header className="my-appointments__header">
+        <h2>My Appointments</h2>
+        <p>Track and manage your scheduled visits.</p>
+      </header>
+
+      {appointments.length === 0 ? (
+        <div className="my-appointments__empty glass-card">
+          <CalendarX2 size={48} className="text-teal-faint" style={{ marginBottom: '1rem', opacity: 0.5 }} />
+          <h3>No Appointments Found</h3>
+          <p>You haven't booked any appointments yet.</p>
+        </div>
+      ) : (
+        <div className="my-appointments__list">
+          {appointments.map((appt) => (
+            <div key={appt.id} className="my-appointments__card glass-card">
+              <div className="my-appointments__card-header">
+                <div>
+                  <span className="token-label">Token #{appt.token || 'N/A'}</span>
+                  <h3>{appt.doctorName}</h3>
+                  <p className="specialty-label">{appt.specialty}</p>
+                </div>
+                <div>
+                  {getStatusBadge(appt.status)}
+                </div>
+              </div>
+              
+              <div className="my-appointments__card-body">
+                <div className="detail-row">
+                  <strong>Date:</strong> {formatLongDate(appt.date)}
+                </div>
+                <div className="detail-row">
+                  <strong>Timing:</strong> {appt.timing}
+                </div>
+                {appt.reason && (
+                  <div className="detail-row">
+                    <strong>Reason:</strong> {appt.reason}
+                  </div>
+                )}
+                <div className="detail-row text-xs text-muted" style={{ marginTop: '1rem' }}>
+                  Booked on {new Date(appt.createdAt).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

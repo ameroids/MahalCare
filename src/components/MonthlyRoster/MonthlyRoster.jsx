@@ -129,9 +129,23 @@ export default function MonthlyRoster({ onBookClick }) {
                 </div>
               ) : (
                 <div className="monthly-roster__day-grid">
-                  {selectedDayEntries.map((entry) => (
-                    <DoctorCard key={entry.id} entry={entry} onViewDetails={setSelectedEntry} onBook={onBookClick} compact />
-                  ))}
+                  {selectedDayEntries.map((entry) => {
+                    const todayISO = getTodayISO();
+                    const isPast = entry.date < todayISO;
+                    const isToday = entry.date === todayISO;
+                    const isAfter8AM = new Date().getHours() >= 8;
+                    const isBookingClosed = isPast || (isToday && isAfter8AM);
+                    
+                    return (
+                      <DoctorCard 
+                        key={entry.id} 
+                        entry={entry} 
+                        onViewDetails={setSelectedEntry} 
+                        onBook={isBookingClosed ? null : onBookClick} 
+                        compact 
+                      />
+                    );
+                  })}
                 </div>
               )}
             </div>

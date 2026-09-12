@@ -58,25 +58,6 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
     const token = result.booking.token;
     setSubmittedToken(token);
     setIsSubmitting(false);
-
-    // Format WhatsApp message
-    const message = 
-`*Mahal al Shifa Appointment Request*
----------------------------------
-*Patient Name:* ${formData.name}
-*ITS Number:* ${formData.its}
-*Phone:* ${formData.phone}
-*Doctor:* ${docName}
-*Specialty:* ${specialty}
-*Scheduled:* ${dateTimeStr}
-${formData.reason ? `*Reason:* ${formData.reason}\n` : ""}*Booking Token:* #${token}
----------------------------------
-Please confirm my appointment. Thank you!`;
-
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    
-    // Open WhatsApp in new window/app
-    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -93,7 +74,7 @@ Please confirm my appointment. Thank you!`;
               </div>
               <span className="eyebrow">Quick & Easy</span>
               <h2>Book an Appointment</h2>
-              <p>Fill in your details below. Your request will be pre-formatted and forwarded directly to our WhatsApp helpdesk.</p>
+              <p>Fill in your details below to request your appointment.</p>
             </div>
 
             <form className="booking-modal__form" onSubmit={handleSubmit}>
@@ -182,21 +163,16 @@ Please confirm my appointment. Thank you!`;
                 />
               </div>
 
-              <div className="booking-modal__warning" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 12px', backgroundColor: 'rgba(217, 119, 6, 0.1)', border: '1px solid rgba(217, 119, 6, 0.3)', borderRadius: '8px', color: 'var(--c-amber-700)', fontSize: '0.85rem', lineHeight: '1.4', marginTop: '4px' }}>
-                <AlertCircle size={18} style={{ flexShrink: 0 }} />
-                <span><strong>Important:</strong> Your appointment will only be booked if you press <strong>Send</strong> after WhatsApp opens!</span>
-              </div>
-
               <button type="submit" className="btn btn-primary booking-modal__submit" disabled={isSubmitting}>
-                <Send size={18} /> {isSubmitting ? "Generating Token..." : "Submit & Forward to WhatsApp"}
+                <Send size={18} /> {isSubmitting ? "Generating Token..." : "Submit Appointment"}
               </button>
             </form>
           </>
         ) : (
           <div className="booking-modal__success">
             <CheckCircle2 size={54} className="success-icon" />
-            <h3>Request Sent to WhatsApp!</h3>
-            <p>Your appointment details have been forwarded to Mahal al Shifa helpdesk.</p>
+            <h3>Request Submitted!</h3>
+            <p>Your appointment has been successfully requested.</p>
 
             <div className="booking-modal__token-box">
               <span>Your Booking Token</span>

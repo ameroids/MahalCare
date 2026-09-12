@@ -26,7 +26,7 @@ export function parseRosterFile(file) {
       return;
     }
 
-    if (name.endsWith(".xlsx") || name.endsWith(".xls")) {
+    if (name.endsWith(".xlsx") || name.endsWith(".xls") || name.endsWith(".csv")) {
       const reader = new FileReader();
       reader.onload = () => {
         try {
@@ -37,7 +37,7 @@ export function parseRosterFile(file) {
           const rows = XLSX.utils.sheet_to_json(sheet, { defval: "" });
           resolve(rows);
         } catch (err) {
-          reject(new Error("This Excel file couldn't be read. Check that it's a valid .xlsx or .xls file."));
+          reject(new Error("This file couldn't be read. Check that it's a valid .xlsx, .xls, or .csv file."));
         }
       };
       reader.onerror = () => reject(new Error("The file couldn't be opened."));
@@ -45,6 +45,6 @@ export function parseRosterFile(file) {
       return;
     }
 
-    reject(new Error("Unsupported file type. Upload a .xlsx, .xls, or .json file."));
+    reject(new Error("Unsupported file type. Upload a .xlsx, .xls, .csv, or .json file."));
   });
 }
