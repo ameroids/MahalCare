@@ -22,6 +22,7 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
   });
 
   const [submittedToken, setSubmittedToken] = useState(null);
+  const [whatsappUrl, setWhatsappUrl] = useState(null);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -56,8 +57,15 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
     });
 
     const token = result.booking.token;
+    
+    const message = `*Mahal al Shifa Appointment Request*\n---------------------------------\n*Patient Name:* ${formData.name}\n*ITS Number:* ${formData.its}\n*Phone:* ${formData.phone}\n*Doctor:* ${docName}\n*Specialty:* ${specialty}\n*Scheduled:* ${dateTimeStr}\n${formData.reason ? `*Reason:* ${formData.reason}\n` : ""}*Booking Token:* #${token}\n---------------------------------\nPlease confirm my appointment. Thank you!`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    
+    setWhatsappUrl(url);
     setSubmittedToken(token);
     setIsSubmitting(false);
+    
+    window.open(url, '_blank');
   };
 
   return (
@@ -183,7 +191,17 @@ export default function BookingModal({ initialDoctor = null, onClose }) {
               Please save this token number. Show it at the medical center reception upon arrival.
             </p>
 
-            <button className="btn btn-secondary" onClick={onClose} style={{ width: "100%", marginTop: "1rem" }}>
+            {whatsappUrl && (
+              <button 
+                className="btn btn-primary" 
+                onClick={() => window.open(whatsappUrl, '_blank')} 
+                style={{ width: "100%", marginTop: "1rem", display: "flex", gap: "8px", justifyContent: "center" }}
+              >
+                <Send size={18} /> Send to WhatsApp
+              </button>
+            )}
+            
+            <button className="btn btn-secondary" onClick={onClose} style={{ width: "100%", marginTop: "0.5rem" }}>
               Done
             </button>
           </div>
